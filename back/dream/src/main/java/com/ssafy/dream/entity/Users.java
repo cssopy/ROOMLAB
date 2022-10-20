@@ -39,6 +39,18 @@ public class Users implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ref_idx")
+    private RefreshToken refreshToken;
+
+    public void setRefreshToken(RefreshToken refreshToken){
+        this.refreshToken = refreshToken;
+    }
+
+    public void updateRefreshToken(String refresh){
+        this.refreshToken = new RefreshToken(refresh);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
