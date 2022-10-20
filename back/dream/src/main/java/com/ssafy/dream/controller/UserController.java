@@ -27,4 +27,9 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody ReqUserDto reqUserDto){
         return userService.login(reqUserDto);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody ReqUserDto reqUserDto){
+        return userService.logout(reqUserDto);
+    }
 }
