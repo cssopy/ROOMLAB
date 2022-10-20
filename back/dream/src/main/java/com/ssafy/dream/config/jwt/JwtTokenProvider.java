@@ -2,6 +2,7 @@ package com.ssafy.dream.config.jwt;
 
 import com.ssafy.dream.dto.res.ResTokenDto;
 import com.ssafy.dream.exception.ExpiredRefException;
+import com.ssafy.dream.service.CustomUserDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -30,6 +31,8 @@ public class JwtTokenProvider {
     private Long accessTokenExpireTime = 1000L * 60 * 1; // access 토큰 유효기간 1분
 
     private Long refreshToenExpireTime = 1000L * 60 * 5; // refresh 토큰 유효기간 5분
+
+    private final CustomUserDetailsService userDetailsService;
 
     @PostConstruct
     protected void init() {
@@ -89,8 +92,8 @@ public class JwtTokenProvider {
         try{
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());
-        } catch(){
-
+        } catch(Exception e){
+            return false;
         }
     }
 
