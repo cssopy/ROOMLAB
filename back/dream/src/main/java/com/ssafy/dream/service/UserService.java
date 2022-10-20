@@ -78,4 +78,19 @@ public class UserService {
 
         return new ResponseEntity<>(resLoginDto, HttpStatus.OK);
     }
+
+    @Transactional
+    public ResponseEntity<?> logout(ReqUserDto reqUserDto){
+        Users user = userRepository.findByUserId(reqUserDto.getUserId());
+        if(user == null){
+            return new ResponseEntity<>("현재 로그인한 아이디가 아닙니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        if(user.getRefreshToken() == null){
+            return new ResponseEntity<>("이미 로그아웃 상태입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        user.setRefreshToken(null);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }
