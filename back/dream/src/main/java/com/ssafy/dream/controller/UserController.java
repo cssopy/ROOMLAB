@@ -22,4 +22,9 @@ public class UserController {
     public ResponseEntity<?> withdrawal(@RequestBody ReqUserDto reqUserDto){
         return userService.withdrawal(reqUserDto);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody ReqUserDto reqUserDto){
+        return userService.login(reqUserDto);
+    }
 }
