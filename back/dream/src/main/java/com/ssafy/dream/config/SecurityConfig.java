@@ -43,15 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/dream**", "/api/user/signup", "/api/user/login", "/api/user/withdrawal", "/api/user/logout")
+                .antMatchers("/api/dream/**", "/api/user/signup", "/api/user/login")
                 .permitAll()
-
-                .and()
-                .authorizeRequests()
-                .antMatchers("/api/user/**")
-                .access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/api/user/withdrawal", "/api/user/logout")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/admin/**")
-                .access("hasRole('ADMIN')")
+                .access("hasRole('ROLE_ADMIN')")
                 .anyRequest()
                 .permitAll()
 
