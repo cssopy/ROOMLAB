@@ -1,6 +1,7 @@
 package com.ssafy.dream.service;
 
 import com.ssafy.dream.config.jwt.JwtTokenProvider;
+import com.ssafy.dream.dto.req.ReqTokenDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.dto.res.ResLoginDto;
 import com.ssafy.dream.dto.res.ResTokenDto;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -92,5 +95,17 @@ public class UserService {
 
         user.setRefreshToken(null);
         return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<?> check(ReqTokenDto reqTokenDto){
+        // 해당 유저의 ref 토큰이 아닐 경우, 만료 시 getUserId()에서 걸림
+        if(!jwtTokenProvider.getUserId(reqTokenDto.getRefresh()).equals(reqTokenDto.getUserId())){
+            return new ResponseEntity<>("해당 유저의 토큰이 아닙니다", HttpStatus.BAD_REQUEST);
+        }
+        String access = jwtTokenProvider.validateRefreshToken(reqTokenDto.getRefresh());
+        Map<String, String> map = new HashMap<>();
+        map.put("access", access);
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }
