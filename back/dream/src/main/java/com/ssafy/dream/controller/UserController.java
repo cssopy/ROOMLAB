@@ -1,5 +1,6 @@
 package com.ssafy.dream.controller;
 
+import com.ssafy.dream.dto.req.ReqTokenDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,10 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestBody ReqUserDto reqUserDto){
         return userService.logout(reqUserDto);
+    }
+
+    @PostMapping("/check")
+    public ResponseEntity<?> check(@RequestBody ReqTokenDto reqTokenDto){
+        return userService.check(reqTokenDto);
     }
 }
