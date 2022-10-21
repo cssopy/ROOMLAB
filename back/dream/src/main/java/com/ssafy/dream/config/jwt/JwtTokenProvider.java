@@ -98,6 +98,29 @@ public class JwtTokenProvider {
     }
 
     // refresh 토큰 유효성 검증
+    public String validateRefreshToken(String token) {
+        Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+        // refresh 토큰 만료시간 남아있을 때
+        if(!claims.getBody().getExpiration().before(new Date())){
+            return recreateAccessToken(claims.getBody().get("sub").toString(), claims.getBody().get("roles"));
+        }
+        return null;
+    }
+
+    public String recreateAccessToken(String userId, Object roles){
+        Claims claims = Jwts.claims().setSubject(userId);
+        claims.put("roles", roles);
+        Date now = new Date();
+
+        String access = Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + accessTokenExpireTime))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+
+        return access;
+    }
 
     public List<String> getUserRoles(String token){
         return (List<String>) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("roles");
