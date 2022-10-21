@@ -1,4 +1,4 @@
-package com.ssafy.dream.config;
+package com.ssafy.dream.config.jwt;
 
 import com.ssafy.dream.config.jwt.JwtAuthenticationFilter;
 import com.ssafy.dream.config.jwt.JwtTokenProvider;
@@ -43,12 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/dream/**", "/api/user/signup", "/api/user/login")
-                .permitAll()
                 .antMatchers("/api/user/withdrawal", "/api/user/logout")
-                .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .access("hasRole('USER') or hasRole('ADMIN')")
                 .antMatchers("/api/admin/**")
-                .access("hasRole('ROLE_ADMIN')")
+                .access("hasRole('ADMIN')")
                 .anyRequest()
                 .permitAll()
 
