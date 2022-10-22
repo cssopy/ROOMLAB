@@ -34,4 +34,12 @@ public class Reports {
 
     @Column(name = "rep_picture", columnDefinition = "text")
     private String repPicture;
+
+    public void updateContent(String newRepContent) {
+        this.repContent = newRepContent;
+    }
+
+    public void updatePicture(String newRepPicture) {
+        this.repPicture = newRepPicture;
+    }
 }
