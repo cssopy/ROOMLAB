@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class ResLoginDto {
 
+    private Long userIdx;
+
     private String userId;
 
     private String access;

@@ -73,6 +73,7 @@ public class UserService {
 
         ResLoginDto resLoginDto = ResLoginDto.builder()
                 .userId(resTokenDto.getUserId())
+                .userIdx(user.getUserIdx())
                 .access(resTokenDto.getAccess())
                 .refresh(resTokenDto.getRefresh())
                 .build();
