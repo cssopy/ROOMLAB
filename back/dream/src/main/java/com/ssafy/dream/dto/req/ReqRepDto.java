@@ -5,8 +5,9 @@ import lombok.Getter;
 
 @Getter
 public class ReqRepDto {
+    private Long repIdx;
     private Long userIdx;
     private Long expIdx;
-    private Long repContent;
-
+    private String repContent;
+//  private File repPicture;
 }
