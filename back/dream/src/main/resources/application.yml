@@ -5,7 +5,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
-    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
+#    username: ssafy
+#    password: ssafy
+    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: ssafy
     password: ssafy
 
