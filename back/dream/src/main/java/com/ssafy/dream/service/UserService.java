@@ -1,6 +1,7 @@
 package com.ssafy.dream.service;
 
 import com.ssafy.dream.config.jwt.JwtTokenProvider;
+import com.ssafy.dream.dto.req.ReqSignupDto;
 import com.ssafy.dream.dto.req.ReqTokenDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.dto.res.ResLoginDto;
@@ -29,13 +30,14 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public ResponseEntity<?> signUp(ReqUserDto reqUserDto){
-        if(userRepository.existsByUserId(reqUserDto.getUserId())){
+    public ResponseEntity<?> signUp(ReqSignupDto reqSignupDto){
+        if(userRepository.existsByUserId(reqSignupDto.getUserId())){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         }
         Users user = Users.builder()
-                .userId(reqUserDto.getUserId())
-                .userPwd(passwordEncoder.encode(reqUserDto.getUserPwd()))
+                .userId(reqSignupDto.getUserId())
+                .userPwd(passwordEncoder.encode(reqSignupDto.getUserPwd()))
+                .userGender(reqSignupDto.getUserGender())
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
         userRepository.save(user);
