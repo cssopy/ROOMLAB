@@ -1,6 +1,7 @@
 package com.ssafy.dream.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Users implements UserDetails {
     private Long userIdx;
 
     @Column(name = "user_id")
+    @NotNull
     private String userId;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
