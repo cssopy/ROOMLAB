@@ -20,6 +20,11 @@ public class UserController {
         return userService.signUp(reqSignupDto);
     }
 
+    @GetMapping("/checkId/{userId}")
+    public ResponseEntity<?> checkId(@PathVariable String userId){
+        return userService.checkId(userId);
+    }
+
     @DeleteMapping("/withdrawal")
     public ResponseEntity<?> withdrawal(@RequestBody ReqUserDto reqUserDto){
         return userService.withdrawal(reqUserDto);
