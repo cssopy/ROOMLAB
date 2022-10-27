@@ -13,17 +13,17 @@ function App() {
   axios.defaults.baseURL = "/back";
   axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
 
-  const tokenCheck = async () => {
-    axios
-      .post("/api/user/check", {
-        userId,
-        refresh,
-      })
-      .then((res) => {
-        setAccess(res.data.access);
-      })
-      .catch((err) => console.error(err));
-  };
+  // const tokenCheck = async () => {
+  //   axios
+  //     .post("/api/user/check", {
+  //       userId,
+  //       refresh,
+  //     })
+  //     .then((res) => {
+  //       setAccess(res.data.access);
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 
   const idChange = (event) => {
     setUserId(event.target.value);
