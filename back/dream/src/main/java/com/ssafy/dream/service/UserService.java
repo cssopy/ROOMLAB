@@ -45,6 +45,15 @@ public class UserService {
     }
 
     @Transactional
+    public ResponseEntity<?> checkId(String userId){
+        Users user = userRepository.findByUserId(userId);
+        if(user == null){
+            return new ResponseEntity<>("사용 가능한 아이디입니다.", HttpStatus.OK);
+        }
+        else return new ResponseEntity<>("중복된 아이디입니다.", HttpStatus.BAD_REQUEST);
+    }
+
+    @Transactional
     public ResponseEntity<?> withdrawal(ReqUserDto reqUserDto){
         Users user = userRepository.findByUserId(reqUserDto.getUserId());
         if(user != null){
