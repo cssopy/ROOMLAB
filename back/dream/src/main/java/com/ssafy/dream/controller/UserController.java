@@ -25,7 +25,7 @@ public class UserController {
         return userService.checkId(userId);
     }
 
-    @DeleteMapping("/withdrawal")
+    @PostMapping("/withdrawal")
     public ResponseEntity<?> withdrawal(@RequestBody ReqUserDto reqUserDto){
         return userService.withdrawal(reqUserDto);
     }
