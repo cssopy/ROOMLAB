@@ -124,18 +124,30 @@ const Test = () => {
 
   const saveImg = (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("file", img);
 
     axios
       .post("/api/report/save", {
         userIdx,
         expIdx: 1,
         repContent: "test",
-        repPicture: img,
       })
-      .then(() => {
-        axios.get(`/api/report/${userIdx}`).then((res) => console.log(res));
+      .then((res) => {
+        console.log(res);
+        if (!!img) {
+          const formData = new FormData();
+          formData.append("image", img);
+          axios({
+            method: "POST",
+            url: `/api/report/picture/${userIdx}/${res.data.repIdx}`,
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            data: formData,
+          }).then((res) => {
+            console.log(res);
+          });
+        }
+        axios.get(`/api/report/all/${userIdx}`).then((res) => console.log(res));
       })
       .catch((err) => console.error(err));
   };
