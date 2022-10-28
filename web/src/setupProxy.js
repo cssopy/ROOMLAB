@@ -3,7 +3,8 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
   app.use(
     createProxyMiddleware("/back", {
-      target: "http://localhost:8000",
+      // target: "http://localhost:8000",
+      target: "https://k7d101.p.ssafy.io",
       pathRewrite: {
         "^/back": "",
       },
