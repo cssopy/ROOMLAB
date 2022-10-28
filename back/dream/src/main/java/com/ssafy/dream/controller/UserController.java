@@ -1,5 +1,6 @@
 package com.ssafy.dream.controller;
 
+import com.ssafy.dream.dto.req.ReqSignupDto;
 import com.ssafy.dream.dto.req.ReqTokenDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.service.UserService;
@@ -15,11 +16,16 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody ReqUserDto reqUserDto) {
-        return userService.signUp(reqUserDto);
+    public ResponseEntity<?> signUp(@RequestBody ReqSignupDto reqSignupDto) {
+        return userService.signUp(reqSignupDto);
     }
 
-    @DeleteMapping("/withdrawal")
+    @GetMapping("/checkId/{userId}")
+    public ResponseEntity<?> checkId(@PathVariable String userId){
+        return userService.checkId(userId);
+    }
+
+    @PostMapping("/withdrawal")
     public ResponseEntity<?> withdrawal(@RequestBody ReqUserDto reqUserDto){
         return userService.withdrawal(reqUserDto);
     }
