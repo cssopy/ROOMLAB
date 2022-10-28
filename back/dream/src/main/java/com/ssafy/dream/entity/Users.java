@@ -1,6 +1,7 @@
 package com.ssafy.dream.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ssafy.dream.entity.enumtype.GenderType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +32,12 @@ public class Users implements UserDetails {
     private Long userIdx;
 
     @Column(name = "user_id")
-    @NotNull
     private String userId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_gender")
+    @NotNull
+    private GenderType userGender;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "user_pwd")
