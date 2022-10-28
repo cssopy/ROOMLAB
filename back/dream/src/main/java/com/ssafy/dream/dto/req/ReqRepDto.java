@@ -9,5 +9,4 @@ public class ReqRepDto {
     private Long userIdx;
     private Long expIdx;
     private String repContent;
-//  private File repPicture;
 }
