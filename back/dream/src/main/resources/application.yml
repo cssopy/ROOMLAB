@@ -4,10 +4,16 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
-    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
+#    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
     username: ssafy
     password: ssafy
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 20MB
+      location: /Users/multicampus/Desktop/upload
+  #      location: /home/ubuntu/backend/upload
 
   jpa:
     hibernate:
@@ -20,3 +26,4 @@ spring:
         format_sql: true
   profiles:
     include: jwt
+
