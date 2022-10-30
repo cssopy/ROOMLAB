@@ -39,6 +39,9 @@ public class ReportService {
     @Value("${spring.servlet.multipart.location}")
     private String bpath;
 
+    @Value("${spring.servlet.multipart.uri}")
+    private String uri;
+
 
     @Transactional
     public ResponseEntity<?> saveReport(ReqRepDto reqRepDto) {
@@ -84,14 +87,13 @@ public class ReportService {
         } else if (report == null) {
             return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.BAD_REQUEST);
         } else {
-            String localPath = "C:/Users/multicampus/Desktop/upload";
-//            String localPath = "/home/ubuntu/backend/upload";
             String picName = userIdx.toString() + "_" + repIdx.toString() + "_" + image.getOriginalFilename();
-            File picture = new File(localPath, picName);
+            File picture = new File(bpath, picName);
             try {
                 image.transferTo(picture);
             } catch (IOException e) {
                 System.out.println("저장 실패");
+                return new ResponseEntity<>("사진 저장에 실패하였습니다", HttpStatus.BAD_REQUEST);
             }
             Path path = Paths.get(bpath+"/"+picName);
 
@@ -101,7 +103,7 @@ public class ReportService {
             Pictures pictureEntity = Pictures.builder()
                     .picName(picName)
                     .picSize(image.getSize())
-                    .picUrl(path.toString())
+                    .picUrl(uri+picName)
                     .build();
             pictureRepository.save(pictureEntity);
             report.setPicture(pictureEntity);
