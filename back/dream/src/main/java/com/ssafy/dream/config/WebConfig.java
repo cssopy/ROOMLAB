@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/META-INF/resources/");
 
 
-        registry.addResourceHandler("/static/img/**")
+        registry.addResourceHandler("/api/static/img/**")
                 .addResourceLocations("file:///" + uploadImagePath + "/")
                 .setCachePeriod(3600)
                 .resourceChain(true)
