@@ -4,22 +4,24 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
-#    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://k7d101.p.ssafy.io:3306/dream?characterEncoding=UTF-8&serverTimezone=UTC
     username: ssafy
     password: ssafy
   servlet:
     multipart:
       maxFileSize: 10MB
       maxRequestSize: 20MB
-      location: /Users/multicampus/Desktop/upload
-  #      location: /home/ubuntu/backend/upload
+#      location: C:/Users/multicampus/Desktop/upload
+#      "[uri]": http://localhost:8000/static/img/
+      location: /home/ubuntu/img/upload
+      "[uri]": https://k7d101.p.ssafy.io/api/static/img/
 
   jpa:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
