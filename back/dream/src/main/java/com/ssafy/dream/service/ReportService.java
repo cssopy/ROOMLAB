@@ -21,8 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class ReportService {
     private final PictureRepository pictureRepository;
 
     @Value("${spring.servlet.multipart.location}")
-    private String bpath;
+    private String localPath;
 
     @Value("${spring.servlet.multipart.uri}")
     private String uri;
@@ -58,6 +56,7 @@ public class ReportService {
                     .userIdx(user)
                     .expIdx(exp)
                     .repContent(reqRepDto.getRepContent())
+                    .repScore(reqRepDto.getRepScore())
                     .build();
             reportRepository.save(report);
             Map<String, Long> data = new HashMap<>();
@@ -88,14 +87,13 @@ public class ReportService {
             return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.BAD_REQUEST);
         } else {
             String picName = userIdx.toString() + "_" + repIdx.toString() + "_" + image.getOriginalFilename();
-            File picture = new File(bpath, picName);
+            File picture = new File(localPath, picName);
             try {
                 image.transferTo(picture);
             } catch (IOException e) {
                 System.out.println("저장 실패");
                 return new ResponseEntity<>("사진 저장에 실패하였습니다", HttpStatus.BAD_REQUEST);
             }
-            Path path = Paths.get(bpath+"/"+picName);
 
             picture.setWritable(true);
             picture.setReadable(true);

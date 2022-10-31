@@ -9,4 +9,5 @@ public class ReqRepDto {
     private Long userIdx;
     private Long expIdx;
     private String repContent;
+    private int repScore;
 }
