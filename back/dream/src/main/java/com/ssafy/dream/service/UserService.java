@@ -3,6 +3,7 @@ package com.ssafy.dream.service;
 import com.ssafy.dream.config.jwt.JwtTokenProvider;
 import com.ssafy.dream.dto.req.ReqSignupDto;
 import com.ssafy.dream.dto.req.ReqTokenDto;
+import com.ssafy.dream.dto.req.ReqTutorialDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.dto.res.ResLoginDto;
 import com.ssafy.dream.dto.res.ResTokenDto;
@@ -64,6 +65,19 @@ public class UserService {
             return new ResponseEntity<>("사용 가능한 아이디입니다.", HttpStatus.OK);
         }
         else return new ResponseEntity<>("중복된 아이디입니다.", HttpStatus.BAD_REQUEST);
+    }
+
+    @Transactional
+    public ResponseEntity<?> checkTutorial(ReqTutorialDto reqTutorialDto){
+        Users user = userRepository.findByUserId(reqTutorialDto.getUserId());
+        if(user == null){
+            return new ResponseEntity<>("해당 유저는 없는 유저입니다.", HttpStatus.BAD_REQUEST);
+        }
+        if(reqTutorialDto.isUserTutorial() != user.isUserTutorial()){
+            user.setUserTutorial(reqTutorialDto.isUserTutorial());
+            return new ResponseEntity<>("변경되었습니다.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("변경사항이 없습니다.", HttpStatus.OK);
     }
 
     @Transactional

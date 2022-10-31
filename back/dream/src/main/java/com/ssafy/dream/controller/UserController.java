@@ -2,6 +2,7 @@ package com.ssafy.dream.controller;
 
 import com.ssafy.dream.dto.req.ReqSignupDto;
 import com.ssafy.dream.dto.req.ReqTokenDto;
+import com.ssafy.dream.dto.req.ReqTutorialDto;
 import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,11 @@ public class UserController {
     @GetMapping("/checkId/{userId}")
     public ResponseEntity<?> checkId(@PathVariable String userId){
         return userService.checkId(userId);
+    }
+
+    @PostMapping("/checkTutorial")
+    public ResponseEntity<?> checkTutorial(@RequestBody ReqTutorialDto reqTutorialDto){
+        return userService.checkTutorial(reqTutorialDto);
     }
 
     @PostMapping("/withdrawal")
