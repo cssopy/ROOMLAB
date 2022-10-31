@@ -1,5 +1,6 @@
 package com.ssafy.dream.dto.res;
 
+import com.ssafy.dream.entity.enumtype.GenderType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,4 +17,6 @@ public class ResLoginDto {
     private String access;
 
     private String refresh;
+
+    private GenderType userGender;
 }
