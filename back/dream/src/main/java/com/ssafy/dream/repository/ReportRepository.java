@@ -13,4 +13,6 @@ public interface ReportRepository extends JpaRepository<Reports, Long> {
     List<Reports> findAllByUserIdx(Users userIdx);
 
     Reports findByRepIdx(Long repIdx);
+
+    void deleteAllByUserIdx(Users userIdx);
 }
