@@ -5,6 +5,8 @@ import com.ssafy.dream.entity.Reports;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -14,14 +16,14 @@ public class ResRepDto {
     private String expTitle;
     private String repContent;
     private int repScore;
-    private ResPicDto repPicture;
+    private List<ResPicDto> pictures;
 
-    public ResRepDto(Reports report) {
+    public ResRepDto(Reports report, List<ResPicDto> pictures) {
         this.repIdx = report.getRepIdx();
         this.expIdx = report.getExpIdx().getExpIdx();
         this.expTitle = report.getExpIdx().getExpTitle();
         this.repContent = report.getRepContent();
         this.repScore = report.getRepScore();
-        this.repPicture = report.getPictureIdx() != null ? new ResPicDto(report.getPictureIdx()) : null;
+        this.pictures = pictures;
     }
 }
