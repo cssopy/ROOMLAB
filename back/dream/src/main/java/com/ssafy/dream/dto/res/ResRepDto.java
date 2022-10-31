@@ -13,6 +13,7 @@ public class ResRepDto {
     private Long expIdx;
     private String expTitle;
     private String repContent;
+    private int repScore;
     private ResPicDto repPicture;
 
     public ResRepDto(Reports report) {
@@ -20,6 +21,7 @@ public class ResRepDto {
         this.expIdx = report.getExpIdx().getExpIdx();
         this.expTitle = report.getExpIdx().getExpTitle();
         this.repContent = report.getRepContent();
+        this.repScore = report.getRepScore();
         this.repPicture = report.getPictureIdx() != null ? new ResPicDto(report.getPictureIdx()) : null;
     }
 }

@@ -36,6 +36,9 @@ public class Reports {
     @Column(name = "rep_content", columnDefinition = "text")
     private String repContent;
 
+    @Column(name = "rep_score")
+    private int repScore;
+
 
     public void updateContent(String newRepContent) {
         this.repContent = newRepContent;
