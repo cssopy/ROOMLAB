@@ -23,14 +23,9 @@ public class ReportController {
     }
 
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateReport(@RequestBody ReqRepDto reqRepDto) {
-        return reportService.updateReport(reqRepDto);
-    }
-
     @PostMapping("/picture/{userIdx}/{repIdx}")
-    public ResponseEntity<?> savePicture(@PathVariable("userIdx") Long userIdx, @PathVariable("repIdx") Long repIdx, @RequestParam MultipartFile image) {
-        return reportService.savePicture(userIdx, repIdx, image);
+    public ResponseEntity<?> savePicture(@PathVariable("userIdx") Long userIdx, @PathVariable("repIdx") Long repIdx, @RequestPart List<MultipartFile> images) {
+        return reportService.savePicture(userIdx, repIdx, images);
     }
 
 

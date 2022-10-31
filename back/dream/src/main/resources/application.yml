@@ -13,7 +13,7 @@ spring:
       maxFileSize: 10MB
       maxRequestSize: 20MB
 #      location: C:/Users/multicampus/Desktop/upload
-#      "[uri]": http://localhost:8000/static/img/
+#      "[uri]": http://localhost:8000/api/static/img/
       location: /var/jenkins_home/upload
       "[uri]": https://k7d101.p.ssafy.io/api/static/img/
 

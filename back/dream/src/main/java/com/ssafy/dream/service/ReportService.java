@@ -2,6 +2,7 @@ package com.ssafy.dream.service;
 
 
 import com.ssafy.dream.dto.req.ReqRepDto;
+import com.ssafy.dream.dto.res.ResPicDto;
 import com.ssafy.dream.dto.res.ResRepDto;
 import com.ssafy.dream.entity.Experimentations;
 import com.ssafy.dream.entity.Pictures;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,45 +69,36 @@ public class ReportService {
     }
 
     @Transactional
-    public ResponseEntity<?> updateReport(ReqRepDto reqRepDto) {
-        Reports report = reportRepository.findByRepIdx(reqRepDto.getRepIdx());
-        if (report == null) {
-            return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.BAD_REQUEST);
-        } else {
-            report.updateContent(reqRepDto.getRepContent());
-            return new ResponseEntity<>(true, HttpStatus.OK);
-        }
-    }
-
-    @Transactional
-    public ResponseEntity<?> savePicture(Long userIdx, Long repIdx, MultipartFile image) {
+    public ResponseEntity<?> savePicture(Long userIdx, Long repIdx, List<MultipartFile> images) {
         Users user = userRepository.findByUserIdx(userIdx);
         Reports report = reportRepository.findByRepIdx(repIdx);
+        System.out.println(images);
         if(user == null) {
             return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
         } else if (report == null) {
             return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.BAD_REQUEST);
         } else {
-            String picName = userIdx.toString() + "_" + repIdx.toString() + "_" + image.getOriginalFilename();
-            File picture = new File(localPath, picName);
-            try {
-                image.transferTo(picture);
-            } catch (IOException e) {
-                System.out.println("저장 실패");
-                return new ResponseEntity<>("사진 저장에 실패하였습니다", HttpStatus.BAD_REQUEST);
+            for (MultipartFile image : images) {
+                String picName = userIdx.toString() + "_" + repIdx.toString() + "_" + image.getOriginalFilename();
+                File picture = new File(localPath, picName);
+                try {
+                    image.transferTo(picture);
+                } catch (IOException e) {
+                    System.out.println("저장 실패");
+                    return new ResponseEntity<>("사진 저장에 실패하였습니다", HttpStatus.BAD_REQUEST);
+                }
+
+                picture.setWritable(true);
+                picture.setReadable(true);
+
+                Pictures pictureEntity = Pictures.builder()
+                        .repIdx(report)
+                        .picName(picName)
+                        .picSize(image.getSize())
+                        .picUrl(uri+picName)
+                        .build();
+                pictureRepository.save(pictureEntity);
             }
-
-            picture.setWritable(true);
-            picture.setReadable(true);
-
-            Pictures pictureEntity = Pictures.builder()
-                    .picName(picName)
-                    .picSize(image.getSize())
-                    .picUrl(uri+picName)
-                    .build();
-            pictureRepository.save(pictureEntity);
-            report.setPicture(pictureEntity);
-
 
             return new ResponseEntity<>(true, HttpStatus.OK);
         }
@@ -118,7 +111,11 @@ public class ReportService {
             return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
         } else {
             List<Reports> reports = reportRepository.findAllByUserIdx(user);
-            List<ResRepDto> reportsList = reports.stream().map(ResRepDto::new).collect(Collectors.toList());
+            List<ResRepDto> reportsList = new ArrayList<>();
+            for (Reports report : reports) {
+                List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
+                reportsList.add(new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList())));
+            }
             return new ResponseEntity<>(reportsList, HttpStatus.OK);
         }
     }

@@ -20,6 +20,10 @@ public class Pictures {
     @Column(name = "pic_idx")
     private Long picIdx;
 
+    @ManyToOne
+    @JoinColumn(name = "rep_idx")
+    private Reports repIdx;
+
     @Column(name = "pic_name")
     private String picName;
 
@@ -28,6 +32,4 @@ public class Pictures {
 
     @Column(name = "pic_size")
     private Long picSize;
-
-    public void setPicUrl(String url) {this.picUrl = url;}
 }

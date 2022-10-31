@@ -29,21 +29,10 @@ public class Reports {
     @JoinColumn(name = "user_idx")
     private Users userIdx;
 
-    @OneToOne
-    @JoinColumn(name = "picture_idx")
-    private Pictures pictureIdx;
-
     @Column(name = "rep_content", columnDefinition = "text")
     private String repContent;
 
     @Column(name = "rep_score")
     private int repScore;
-
-
-    public void updateContent(String newRepContent) {
-        this.repContent = newRepContent;
-    }
-
-    public void setPicture(Pictures picture) {this.pictureIdx = picture;}
 
 }
