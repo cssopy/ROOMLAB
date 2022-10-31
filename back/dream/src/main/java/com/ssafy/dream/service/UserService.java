@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,16 @@ public class UserService {
     public ResponseEntity<?> signUp(ReqSignupDto reqSignupDto){
         if(userRepository.existsByUserId(reqSignupDto.getUserId())){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+
+        // 아이디 정규표현식
+        if(!Pattern.matches("^[가-힣|a-z|A-Z|0-9]*$", reqSignupDto.getUserId())){
+            return new ResponseEntity<>("적절한 아이디가 아닙니다", HttpStatus.BAD_REQUEST);
+        }
+
+        // 비밀번호 정규표현식
+        if(!Pattern.matches("^(?=.*[a-zA-Z])(?=.*\\d).{6,20}$", reqSignupDto.getUserPwd())){
+            return new ResponseEntity<>("적절한 비밀번호가 아닙니다", HttpStatus.BAD_REQUEST);
         }
         Users user = Users.builder()
                 .userId(reqSignupDto.getUserId())
