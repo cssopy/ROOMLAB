@@ -7,6 +7,7 @@ import com.ssafy.dream.dto.req.ReqUserDto;
 import com.ssafy.dream.dto.res.ResLoginDto;
 import com.ssafy.dream.dto.res.ResTokenDto;
 import com.ssafy.dream.entity.Users;
+import com.ssafy.dream.repository.ReportRepository;
 import com.ssafy.dream.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final ReportRepository reportRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
@@ -69,8 +71,8 @@ public class UserService {
         Users user = userRepository.findByUserId(reqUserDto.getUserId());
         if(user != null){
             if(passwordEncoder.matches(reqUserDto.getUserPwd(), user.getUserPwd())){
+                reportRepository.deleteAllByUserIdx(user);
                 userRepository.delete(user);
-
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }
             else return new ResponseEntity<>("비밀번호가 틀렸습니다", HttpStatus.BAD_REQUEST);
