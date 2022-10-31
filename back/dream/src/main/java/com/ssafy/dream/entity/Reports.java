@@ -21,7 +21,7 @@ public class Reports {
     @Column(name = "rep_idx", columnDefinition = "int")
     private Long repIdx;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "exp_idx")
     private Experimentations expIdx;
 
