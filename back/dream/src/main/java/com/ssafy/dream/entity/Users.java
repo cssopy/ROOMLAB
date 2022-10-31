@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,7 @@ public class Users implements UserDetails {
     private Long userIdx;
 
     @Column(name = "user_id")
+    @NotNull
     private String userId;
 
     @Enumerated(EnumType.STRING)
@@ -41,7 +43,12 @@ public class Users implements UserDetails {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "user_pwd")
+    @NotNull
     private String userPwd;
+
+    @Column(name = "user_tutorial")
+    @NotNull
+    private boolean userTutorial = false;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
@@ -53,6 +60,10 @@ public class Users implements UserDetails {
 
     public void setRefreshToken(RefreshToken refreshToken){
         this.refreshToken = refreshToken;
+    }
+
+    public void setUserTutorial(boolean tutorial){
+        this.userTutorial = tutorial;
     }
 
     public void updateRefreshToken(String refresh){
