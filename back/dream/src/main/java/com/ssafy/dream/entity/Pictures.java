@@ -1,5 +1,6 @@
 package com.ssafy.dream.entity;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,11 +26,13 @@ public class Pictures {
     private Reports repIdx;
 
     @Column(name = "pic_name")
+    @NotNull
     private String picName;
 
-    @Column(name = "pic_url")
+    @Column(name = "pic_url", columnDefinition = "text")
     private String picUrl;
 
     @Column(name = "pic_size")
+    @NotNull
     private Long picSize;
 }
