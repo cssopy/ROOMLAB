@@ -73,11 +73,8 @@ public class UserService {
         if(user == null){
             return new ResponseEntity<>("해당 유저는 없는 유저입니다.", HttpStatus.BAD_REQUEST);
         }
-        if(reqTutorialDto.isUserTutorial() != user.isUserTutorial()){
-            user.setUserTutorial(reqTutorialDto.isUserTutorial());
-            return new ResponseEntity<>("변경되었습니다.", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("변경사항이 없습니다.", HttpStatus.OK);
+        user.setUserTutorial(!reqTutorialDto.isUserTutorial());
+        return new ResponseEntity<>("변경되었습니다.", HttpStatus.OK);
     }
 
     @Transactional
@@ -113,6 +110,7 @@ public class UserService {
                 .userId(resTokenDto.getUserId())
                 .userIdx(user.getUserIdx())
                 .userGender(user.getUserGender())
+                .userTutorial(user.isUserTutorial())
                 .access(resTokenDto.getAccess())
                 .refresh(resTokenDto.getRefresh())
                 .build();

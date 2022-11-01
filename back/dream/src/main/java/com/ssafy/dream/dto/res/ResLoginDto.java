@@ -19,4 +19,6 @@ public class ResLoginDto {
     private String refresh;
 
     private GenderType userGender;
+
+    private boolean userTutorial;
 }
