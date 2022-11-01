@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EboniteStick : MonoBehaviour
+public class FurBundle : MonoBehaviour
 {
     // 전자친화도
-    public float electronAffinity = 60f;
+    public float electronAffinity = 0;
     // 띠는 전하
     public string electricCharge = null;
     // 대전값
@@ -19,7 +19,7 @@ public class EboniteStick : MonoBehaviour
 
     private void Update()
     {
-        if(electricCharge == "plus")
+        if (electricCharge == "plus")
         {
             foreach (GameObject each in electricCharges)
             {
@@ -27,7 +27,7 @@ public class EboniteStick : MonoBehaviour
                 each.GetComponent<MeshRenderer>().material = materials[0];
             }
         }
-        else if(electricCharge == "minus")
+        else if (electricCharge == "minus")
         {
             foreach (GameObject each in electricCharges)
             {
@@ -46,29 +46,29 @@ public class EboniteStick : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.gameObject.name == "FurBundle")
+        if (collision.collider.gameObject.name == "SilkBundle")
         {
-            electricCharge = "minus";
-            electrification = Math.Abs(electronAffinity - collision.collider.gameObject.GetComponent<FurBundle>().electronAffinity);
-
-            if (electrificationDegree < 1)
-            {
-                electrificationDegree += 0.001f;
-            }
-        }else if (collision.collider.gameObject.name == "SilkBundle")
-        {
-            electricCharge = "minus";
+            electricCharge = "plus";
             electrification = Math.Abs(electronAffinity - collision.collider.gameObject.GetComponent<SilkBundle>().electronAffinity);
 
             if (electrificationDegree < 1)
             {
                 electrificationDegree += 0.001f;
             }
-        }
-        else if (collision.collider.gameObject.name == "Rubber")
+        }else if (collision.collider.gameObject.name == "Rubber")
         {
-            electricCharge = "minus";
+            electricCharge = "plus";
             electrification = Math.Abs(electronAffinity - collision.collider.gameObject.GetComponent<Rubber>().electronAffinity);
+
+            if (electrificationDegree < 1)
+            {
+                electrificationDegree += 0.001f;
+            }
+        }
+        else if (collision.collider.gameObject.name == "EboniteStick")
+        {
+            electricCharge = "plus";
+            electrification = Math.Abs(electronAffinity - collision.collider.gameObject.GetComponent<EboniteStick>().electronAffinity);
 
             if (electrificationDegree < 1)
             {
