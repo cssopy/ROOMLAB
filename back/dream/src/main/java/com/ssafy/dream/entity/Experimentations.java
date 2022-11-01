@@ -32,10 +32,24 @@ public class Experimentations {
     private String expDetail;
 
     @Column(name = "exp_grade")
-    @NotNull
     private int expGrade;
 
     @Column(name = "exp_subject")
-    @NotNull
     private String expSubject;
+
+    @Column(name = "exp_answer_1")
+    private String expAnswer1;
+
+    @Column(name = "exp_answer_2")
+    private String expAnswer2;
+
+    @Column(name = "exp_answer_3")
+    private String expAnswer3;
+
+    @Column(name = "exp_answer_4")
+    private String expAnswer4;
+
+    @Column(name = "exp_answer_5")
+    private String expAnswer5;
+
 }

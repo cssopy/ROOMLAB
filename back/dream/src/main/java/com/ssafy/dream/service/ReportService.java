@@ -2,6 +2,7 @@ package com.ssafy.dream.service;
 
 
 import com.ssafy.dream.dto.req.ReqRepDto;
+import com.ssafy.dream.dto.res.ResExpDto;
 import com.ssafy.dream.dto.res.ResPicDto;
 import com.ssafy.dream.dto.res.ResRepDto;
 import com.ssafy.dream.entity.Experimentations;
@@ -22,10 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,6 +57,12 @@ public class ReportService {
                     .expIdx(exp)
                     .repContent(reqRepDto.getRepContent())
                     .repScore(reqRepDto.getRepScore())
+                    .repAnswer1(reqRepDto.getRepAnswers().get(0))
+                    .repAnswer2(reqRepDto.getRepAnswers().get(1))
+                    .repAnswer3(reqRepDto.getRepAnswers().get(2))
+                    .repAnswer4(reqRepDto.getRepAnswers().get(3))
+                    .repAnswer5(reqRepDto.getRepAnswers().get(4))
+                    .repDate(new Date())
                     .build();
             reportRepository.save(report);
             Map<String, Long> data = new HashMap<>();
@@ -72,7 +76,6 @@ public class ReportService {
     public ResponseEntity<?> savePicture(Long userIdx, Long repIdx, List<MultipartFile> images) {
         Users user = userRepository.findByUserIdx(userIdx);
         Reports report = reportRepository.findByRepIdx(repIdx);
-        System.out.println(images);
         if(user == null) {
             return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
         } else if (report == null) {
@@ -84,7 +87,6 @@ public class ReportService {
                 try {
                     image.transferTo(picture);
                 } catch (IOException e) {
-                    System.out.println("저장 실패");
                     return new ResponseEntity<>("사진 저장에 실패하였습니다", HttpStatus.BAD_REQUEST);
                 }
 
@@ -114,7 +116,7 @@ public class ReportService {
             List<ResRepDto> reportsList = new ArrayList<>();
             for (Reports report : reports) {
                 List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
-                reportsList.add(new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList())));
+                reportsList.add(new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx())));
             }
             return new ResponseEntity<>(reportsList, HttpStatus.OK);
         }
