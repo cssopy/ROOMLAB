@@ -113,6 +113,7 @@ public class UserService {
                 .userId(resTokenDto.getUserId())
                 .userIdx(user.getUserIdx())
                 .userGender(user.getUserGender())
+                .userTutorial(user.isUserTutorial())
                 .access(resTokenDto.getAccess())
                 .refresh(resTokenDto.getRefresh())
                 .build();
