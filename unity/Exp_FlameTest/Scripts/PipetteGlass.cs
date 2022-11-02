@@ -6,14 +6,30 @@ public class PipetteGlass : MonoBehaviour
 {
     public Pipette parent;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Sample")
+        {
+            parent.OnTriggerEnterInGlass();
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Sample")
         {
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                parent.OnTriggerEnterInGlass(other);
+                parent.OnTriggerStayInGlass(other);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Sample")
+        {
+            parent.OnTriggerExitInGlass();
         }
     }
 }
