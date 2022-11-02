@@ -7,18 +7,24 @@ public class Fire : MonoBehaviour
     public GameObject sparks;
     public GameObject fire;
 
-    private ParticleSystem.MainModule sparksPSMain;
-    private ParticleSystem.MainModule firePSMain;
+    private ParticleSystem thisPS;
+    private ParticleSystem sparksPS;
+    private ParticleSystem firePS;
 
     private void Awake()
     {
-        sparksPSMain = sparks.GetComponent<ParticleSystem>().main;
-        firePSMain = fire.GetComponent<ParticleSystem>().main;
+        thisPS = GetComponent<ParticleSystem>();
+        sparksPS = sparks.GetComponent<ParticleSystem>();
+        firePS = fire.GetComponent<ParticleSystem>();
     }
 
     public void setFireColor(Color color)
     {
-        sparksPSMain.startColor = color;
-        firePSMain.startColor = color;
+        var main = thisPS.main;
+        main.startColor = color;
+        main = sparksPS.main;
+        main.startColor = color;
+        main = firePS.main;
+        main.startColor = color;
     }
 }
