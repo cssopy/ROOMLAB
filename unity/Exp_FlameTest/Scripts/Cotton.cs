@@ -37,7 +37,8 @@ public class Cotton : MonoBehaviour
     {
         if (other.tag == "Flame")
         {
-            if(type == "Na")
+            isBurning = true;
+            if (type == "Na")
             {
                 fireComp.setFireColor(Color.yellow);
             }else if (type == "Cu")
@@ -56,7 +57,6 @@ public class Cotton : MonoBehaviour
             {
                 fireComp.setFireColor(new Color(139, 0, 255));
             }
-            isBurning = true;
         }
     }
 }
