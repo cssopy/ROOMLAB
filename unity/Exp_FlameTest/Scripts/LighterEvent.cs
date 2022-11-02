@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BNG;
 
-public class LighterEvent : MonoBehaviour
+public class LighterEvent : GrabbableEvents
 {
     private GameObject childObject;
     public bool isActive = false;
@@ -10,12 +11,27 @@ public class LighterEvent : MonoBehaviour
     void Start()
     {
         childObject = transform.Find("Flame").gameObject;
-        childObject.SetActive(isActive);
+    }
+
+    private void Update()
+    {
+        if (isActive)
+        {
+            childObject.SetActive(isActive);
+        }
+        else
+        {
+            childObject.SetActive(isActive);
+        }
+    }
+
+    public override void OnTriggerDown()
+    {
+        isActive = !isActive;
     }
 
     public void OnActivated()
     {
         isActive = !isActive;
-        childObject.SetActive(isActive);
     }
 }
