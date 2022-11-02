@@ -36,7 +36,7 @@ public class UserService {
     @Transactional
     public ResponseEntity<?> signUp(ReqSignupDto reqSignupDto){
         if(userRepository.existsByUserId(reqSignupDto.getUserId())){
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(false, HttpStatus.CONFLICT);
         }
 
         // 아이디 정규표현식
@@ -64,14 +64,14 @@ public class UserService {
         if(user == null){
             return new ResponseEntity<>("사용 가능한 아이디입니다.", HttpStatus.OK);
         }
-        else return new ResponseEntity<>("중복된 아이디입니다.", HttpStatus.BAD_REQUEST);
+        else return new ResponseEntity<>("중복된 아이디입니다.", HttpStatus.CONFLICT);
     }
 
     @Transactional
     public ResponseEntity<?> checkTutorial(ReqTutorialDto reqTutorialDto){
         Users user = userRepository.findByUserId(reqTutorialDto.getUserId());
         if(user == null){
-            return new ResponseEntity<>("해당 유저는 없는 유저입니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("해당 유저는 없는 유저입니다.", HttpStatus.NOT_FOUND);
         }
         user.setUserTutorial(!reqTutorialDto.isUserTutorial());
         return new ResponseEntity<>("변경되었습니다.", HttpStatus.OK);
@@ -88,14 +88,14 @@ public class UserService {
             }
             else return new ResponseEntity<>("비밀번호가 틀렸습니다", HttpStatus.BAD_REQUEST);
         }
-        else return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
+        else return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
     }
 
     @Transactional
     public ResponseEntity<?> login(ReqUserDto reqUserDto){
         Users user = userRepository.findByUserId(reqUserDto.getUserId());
         if(user == null){
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
 
         if(!passwordEncoder.matches(reqUserDto.getUserPwd(), user.getUserPwd())){
@@ -128,7 +128,7 @@ public class UserService {
         }
 
         if(user.getRefreshToken() == null){
-            return new ResponseEntity<>("이미 로그아웃 상태입니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("이미 로그아웃 상태입니다.", HttpStatus.NOT_FOUND);
         }
 
         user.setRefreshToken(null);

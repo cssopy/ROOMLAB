@@ -46,9 +46,9 @@ public class ReportService {
         Users user = userRepository.findByUserIdx(reqRepDto.getUserIdx());
         Experimentations exp = experimentationRepository.findByExpIdx(reqRepDto.getExpIdx());
         if(user == null) {
-            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
         } else if (exp == null) {
-            return new ResponseEntity<>("실험을 다시 선택해주세요", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("실험을 다시 선택해주세요", HttpStatus.NOT_FOUND);
         } else if (reqRepDto.getRepContent().length() == 0) {
             return new ResponseEntity<>("보고서 내용을 작성해주세요", HttpStatus.BAD_REQUEST);
         } else {
@@ -77,9 +77,9 @@ public class ReportService {
         Users user = userRepository.findByUserIdx(userIdx);
         Reports report = reportRepository.findByRepIdx(repIdx);
         if(user == null) {
-            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
         } else if (report == null) {
-            return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.NOT_FOUND);
         } else {
             for (MultipartFile image : images) {
                 String picName = userIdx.toString() + "_" + repIdx.toString() + "_" + image.getOriginalFilename();
@@ -110,7 +110,7 @@ public class ReportService {
     public ResponseEntity<?> findUserReport(Long userIdx) {
         Users user = userRepository.findByUserIdx(userIdx);
         if (user == null) {
-            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
         } else {
             List<Reports> reports = reportRepository.findAllByUserIdx(user);
             List<ResRepDto> reportsList = new ArrayList<>();
