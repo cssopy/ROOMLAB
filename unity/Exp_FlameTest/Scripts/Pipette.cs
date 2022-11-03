@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BNG;
 
-public class Pipette : MonoBehaviour
+public class Pipette : GrabbableEvents
 {
     public GameObject glassLiquid;
     public GameObject trickle;
@@ -16,7 +17,7 @@ public class Pipette : MonoBehaviour
         glassLiquidRenderer = glassLiquid.GetComponent<Renderer>();
     }
 
-    public void OnActivated()
+    public override void OnTriggerDown()
     {
         if (!isInteractingWithSample)
         {
@@ -33,6 +34,24 @@ public class Pipette : MonoBehaviour
             }
         }
     }
+
+    /*public void OnActivated()
+    {
+        if (!isInteractingWithSample)
+        {
+            float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
+            if (colour < 0.581)
+            {
+                colour += 0.01f;
+                glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
+                StartCoroutine(playTrickle());
+            }
+            else
+            {
+                sampleName = null;
+            }
+        }
+    }*/
 
     private IEnumerator playTrickle()
     {
