@@ -62,6 +62,7 @@ const Test = () => {
       .post("/api/user/signup", {
         userId,
         userPwd,
+        userGender: "MAN",
       })
       .then(() => {
         logIn();
@@ -114,7 +115,7 @@ const Test = () => {
   const [imgUrl, setImgUrl] = useState("");
 
   const printFile = (e) => {
-    setImg(e.target.files[0]);
+    setImg(e.target.files);
     const reader = new FileReader();
     reader.onload = () => {
       setImgUrl(reader.result);
@@ -130,12 +131,15 @@ const Test = () => {
         userIdx,
         expIdx: 1,
         repContent: "test",
+        repScore: 100,
+        repAnswers: ["하나", "둘", "셋", "넷", "다섯"],
       })
       .then((res) => {
         console.log(res);
         if (!!img) {
           const formData = new FormData();
-          formData.append("image", img);
+          [].forEach.call(img, (file) => formData.append("images", file));
+
           axios({
             method: "POST",
             url: `/api/report/picture/${userIdx}/${res.data.repIdx}`,
@@ -216,7 +220,12 @@ const Test = () => {
             </Button>
           </div>
           <img src={imgUrl} style={{ width: "300px" }} alt="img" />
-          <input type="file" accept="image/*" onChange={printFile}></input>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={printFile}
+            multiple={true}
+          ></input>
           <button onClick={saveImg}>송신</button>
         </div>
       )}
