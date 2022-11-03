@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Test />} />
+        <Route path="/webz" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
