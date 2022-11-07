@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipetteGlass : MonoBehaviour
+public class ContactPart : MonoBehaviour
 {
-    public Pipette parent;
+    public Circuit circuit;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Sample")
+        if(other.name == "ContactPart")
         {
-            parent.OnTriggerEnterInGlass(other);
+            circuit.isInContacted = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Sample")
+        if (other.name == "ContactPart")
         {
-            parent.OnTriggerExitInGlass();
+            circuit.isInContacted = false;
         }
     }
 }

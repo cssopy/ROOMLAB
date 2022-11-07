@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipetteGlass : MonoBehaviour
+public class BatterySocket : MonoBehaviour
 {
-    public Pipette parent;
+    public Circuit circuit;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Sample")
+        if (other.name == "Battery")
         {
-            parent.OnTriggerEnterInGlass(other);
+            circuit.isInstalledBattery = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Sample")
+        if (other.name == "Battery")
         {
-            parent.OnTriggerExitInGlass();
+            circuit.isInstalledBattery = false;
         }
     }
 }

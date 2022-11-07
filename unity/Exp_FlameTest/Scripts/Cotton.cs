@@ -43,7 +43,7 @@ public class Cotton : MonoBehaviour
                 fireComp.setFireColor(Color.yellow);
             }else if (type == "Cu")
             {
-                fireComp.setFireColor(new Color(0, 255, 255));
+                fireComp.setFireColor(new Color(8f / 255f, 64f / 255f, 57f / 255f));
             }
             else if (type == "Sr")
             {
@@ -51,11 +51,11 @@ public class Cotton : MonoBehaviour
             }
             else if (type == "Ba")
             {
-                fireComp.setFireColor(new Color(60, 66, 23));
+                fireComp.setFireColor(new Color(60f / 255f, 66f / 255f, 23f / 255f));
             }
             else if (type == "K")
             {
-                fireComp.setFireColor(new Color(139, 0, 255));
+                fireComp.setFireColor(new Color(1f, 51f / 255f, 1f));
             }
         }
     }

@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipetteGlass : MonoBehaviour
+public class BimetalSocket : MonoBehaviour
 {
-    public Pipette parent;
+    public Circuit circuit;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Sample")
+        if(other.name == "Bimetal")
         {
-            parent.OnTriggerEnterInGlass(other);
+            circuit.isInstalledMetal = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Sample")
+        if(other.name == "Bimetal")
         {
-            parent.OnTriggerExitInGlass();
+            circuit.isInstalledMetal = false;
         }
     }
 }
