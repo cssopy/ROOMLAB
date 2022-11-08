@@ -15,6 +15,8 @@ public class MetalPlate : MonoBehaviour
     public GameObject[] bottomElectricCharges;
     public Material[] materials;
 
+    public CanvasPageCTR canvasPageCTR;
+
     private void Update()
     {
         if(topElectricCharge == "plus")
@@ -59,6 +61,18 @@ public class MetalPlate : MonoBehaviour
     {
         if (other.name == "EboniteStick")
         {
+            if (!canvasPageCTR.isDone[2] && canvasPageCTR.isOrder(2))
+            {
+                canvasPageCTR.SetPage(2);
+            }else if (!canvasPageCTR.isDone[4] && canvasPageCTR.isOrder(4))
+            {
+                canvasPageCTR.SetPage(4);
+            }
+            else if (!canvasPageCTR.isDone[6] && canvasPageCTR.isOrder(6))
+            {
+                canvasPageCTR.SetPage(6);
+            }
+
             EboniteStick otherComp = other.gameObject.GetComponent<EboniteStick>();
             setElectricCharge(otherComp.electricCharge);
             StartCoroutine(widen(otherComp.electrification, otherComp.electrificationDegree));
@@ -77,6 +91,11 @@ public class MetalPlate : MonoBehaviour
         }
         else if (other.name == "FurBundle")
         {
+            if (!canvasPageCTR.isDone[7] && canvasPageCTR.isOrder(7))
+            {
+                canvasPageCTR.SetPage(7);
+            }
+
             FurBundle otherComp = other.gameObject.GetComponent<FurBundle>();
             setElectricCharge(otherComp.electricCharge);
             StartCoroutine(widen(otherComp.electrification, otherComp.electrificationDegree));
