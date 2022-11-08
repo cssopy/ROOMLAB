@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class EboniteStick : MonoBehaviour
 {
@@ -14,8 +15,20 @@ public class EboniteStick : MonoBehaviour
     // 대전도
     public float electrificationDegree = 0;
 
+    // 물체의 전하들
     public GameObject[] electricCharges;
+    // 전하들의 materials
     public Material[] materials;
+
+    // 타이머 관련
+    public GameObject timerUI;
+    public TextMeshProUGUI textMesh;
+    public CanvasPageCTR canvasPageCTR;
+    float time;
+
+    // 타이머에서의 제한시간 관련
+    public GameObject timerOfTU;
+    float timeOfTU;
 
     private void Update()
     {
@@ -42,6 +55,19 @@ public class EboniteStick : MonoBehaviour
                 each.SetActive(false);
             }
         }
+
+        if (timerUI.activeSelf)
+        {
+            timeOfTU += Time.deltaTime;
+
+            if(10 - timeOfTU < 0)
+            {
+                timerUI.SetActive(false);
+                timeOfTU = 0f;
+            }
+
+            timerOfTU.transform.localScale = new Vector3(0f, 0.001f, (10- timeOfTU)/100);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -55,7 +81,10 @@ public class EboniteStick : MonoBehaviour
             {
                 electrificationDegree += 0.001f;
             }
-        }else if (collision.collider.gameObject.name == "SilkBundle")
+
+            runTimer(5);
+        }
+        else if (collision.collider.gameObject.name == "SilkBundle")
         {
             electricCharge = "minus";
             electrification = Math.Abs(electronAffinity - collision.collider.gameObject.GetComponent<SilkBundle>().electronAffinity);
@@ -64,6 +93,8 @@ public class EboniteStick : MonoBehaviour
             {
                 electrificationDegree += 0.001f;
             }
+
+            runTimer(3);
         }
         else if (collision.collider.gameObject.name == "Rubber")
         {
@@ -73,6 +104,41 @@ public class EboniteStick : MonoBehaviour
             if (electrificationDegree < 1)
             {
                 electrificationDegree += 0.001f;
+            }
+
+            runTimer(1);
+        }
+        else if (collision.collider.gameObject.name == "Insulator")
+        {
+            initEboniteStick();
+        }
+    }
+
+    private void initEboniteStick()
+    {
+        electronAffinity = 60f;
+        electricCharge = null;
+        electrification = 0;
+        electrificationDegree = 0;
+    }
+
+    public void runTimer(int num)
+    {
+        if (!canvasPageCTR.isDone[num] && canvasPageCTR.isOrder(num))
+        {
+            if (!timerUI.activeSelf)
+            {
+                timerUI.SetActive(true);
+            }
+
+            time += Time.deltaTime;
+            textMesh.text = string.Format("{0:N2}초", time);
+
+            if (time >= 5)
+            {
+                canvasPageCTR.SetPage(num);
+                time = 0;
+                timerUI.SetActive(false);
             }
         }
     }
