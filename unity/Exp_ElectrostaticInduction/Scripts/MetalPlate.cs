@@ -15,7 +15,7 @@ public class MetalPlate : MonoBehaviour
     public GameObject[] bottomElectricCharges;
     public Material[] materials;
 
-    public CanvasPageCTR canvasPageCTR;
+    public CPC_EI canvasPageCTR;
 
     private void Update()
     {
