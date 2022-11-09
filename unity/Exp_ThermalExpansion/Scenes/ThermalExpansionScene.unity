@@ -1988,6 +1988,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightBulb
       objectReference: {fileID: 0}
+    - target: {fileID: 162932824385288183, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 558103713344805578, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 651062782762691917, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
         type: 3}
       propertyPath: m_RootOrder
@@ -2057,6 +2067,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2717622739366813953, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471223406315851683, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 5471223406318258099, guid: 1ac5cba5c8bfc1d4380367ec1e017007,
         type: 3}
@@ -2484,7 +2504,7 @@ GameObject:
   - component: {fileID: 273541903}
   - component: {fileID: 273541902}
   - component: {fileID: 273541908}
-  m_Layer: 2
+  m_Layer: 26
   m_Name: Battery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5649,84 +5669,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 227313304}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &562218637
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SingleLine-LightSaber(Clone)
-  m_Shader: {fileID: 4800000, guid: 2d9a4ca4b2730b64e8aade7030f8caeb, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Glossiness: 0.5
-    - _LightSaberFactor: 1
-    - _LineScale: 0.0077777244
-    - _LineWidth: 23
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _UvBasedLightSaberFactor: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &577974823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6510,6 +6452,11 @@ PrefabInstance:
       propertyPath: GrabPoints.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4533223198684294897, guid: 41a38d9f13a73d34d888c85ceaf77844,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12439b618bac60b43816a4b14b3fc015, type: 2}
     - target: {fileID: 4821395988922323550, guid: 41a38d9f13a73d34d888c85ceaf77844,
         type: 3}
       propertyPath: m_Radius
@@ -6597,6 +6544,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a38d9f13a73d34d888c85ceaf77844, type: 3}
+--- !u!21 &647761010
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SingleLine-LightSaber(Clone)
+  m_Shader: {fileID: 4800000, guid: 2d9a4ca4b2730b64e8aade7030f8caeb, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Glossiness: 0.5
+    - _LightSaberFactor: 1
+    - _LineScale: 0.0077777244
+    - _LineWidth: 23
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UvBasedLightSaberFactor: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &655661872
 GameObject:
   m_ObjectHideFlags: 0
@@ -18837,7 +18862,7 @@ GameObject:
   - component: {fileID: 1902263004}
   - component: {fileID: 1902263003}
   - component: {fileID: 1902263010}
-  m_Layer: 2
+  m_Layer: 30
   m_Name: Bimetal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19353,6 +19378,10 @@ PrefabInstance:
     - target: {fileID: 1123693314251274, guid: 311530718d9767e4eae0b0557a917fcb, type: 3}
       propertyPath: m_Name
       value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123693314251274, guid: 311530718d9767e4eae0b0557a917fcb, type: 3}
+      propertyPath: m_Layer
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 4130326413330252, guid: 311530718d9767e4eae0b0557a917fcb, type: 3}
       propertyPath: m_RootOrder
@@ -20768,7 +20797,7 @@ GameObject:
   - component: {fileID: 2037055533}
   - component: {fileID: 2037055532}
   - component: {fileID: 2037055538}
-  m_Layer: 2
+  m_Layer: 28
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21406,40 +21435,110 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 396732963838421091, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 936077514038262089, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1091854778404667257, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 2179104319958604198, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179104319958604198, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 2691074470585911564, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 2691074470585911564, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 3240695520753803761, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240695520753803761, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670120880939030331, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776367346582878251, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3826797774852285564, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 3826797774852285564, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 3945077691507277622, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: Bimetal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945077691507277622, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 4166514629105540433, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 4166514629105540433, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522477354900980096, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 4756337389744448650, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756337389744448650, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971589165235721712, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 5226276421682557357, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
@@ -21516,25 +21615,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 5417017314970222229, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670850693811801936, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 7245569583274287299, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245569583274287299, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 7792635988358920747, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
+    - target: {fileID: 7792635988358920747, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587619561512777017, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 8718460439552478464, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Name
+      value: ContactPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718460439552478464, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124912013965893550, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
       propertyPath: m_Name
       value: ContactPart
       objectReference: {fileID: 0}
     - target: {fileID: 9124912013965893550, guid: bad526528f4d60f47a56f1bb45223119,
         type: 3}
-      propertyPath: m_Name
-      value: ContactPart
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171038817013132646, guid: bad526528f4d60f47a56f1bb45223119,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad526528f4d60f47a56f1bb45223119, type: 3}

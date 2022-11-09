@@ -26,7 +26,7 @@ public class Pipette : GrabbableEvents
             float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
             if (colour < 0.581)
             {
-                colour += 0.001f;
+                colour += 0.01f;
                 glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
                 StartCoroutine(playTrickle());
             }
@@ -53,7 +53,7 @@ public class Pipette : GrabbableEvents
             float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
             if (colour > 0.4)
             {
-                colour += -0.001f; 
+                colour += -0.01f; 
                 glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
             }
         }

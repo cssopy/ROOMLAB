@@ -23,7 +23,7 @@ public class EboniteStick : MonoBehaviour
     // 타이머 관련
     public GameObject timerUI;
     public TextMeshProUGUI textMesh;
-    public CanvasPageCTR canvasPageCTR;
+    public CPC_EI canvasPageCTR;
     float time;
 
     // 타이머에서의 제한시간 관련
