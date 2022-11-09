@@ -11,15 +11,74 @@ public class Circuit : MonoBehaviour
 
     public GameObject light;
 
+    public GameObject[] contactParts;
+
+    float temp = 0f;
+    bool isChange = false;
+
     private void Update()
     {
         if(isInstalledBattery && isInstalledLightBulb && isInstalledMetal && isInContacted)
         {
             light.SetActive(true);
+
+            if(temp < 1)
+            {
+                temp += 0.001f;
+            }
+
+            if(temp >= 1 && !isChange)
+            {
+                isChange = true;
+                StartCoroutine(changeBimetal1());
+            }
         }
         else
         {
             light.SetActive(false);
+
+            if (temp > 0)
+            {
+                temp -= 0.001f;
+            }
+
+            if(temp <= 0 && isChange)
+            {
+                isChange = false;
+                StartCoroutine(changeBimetal2());
+            }
+        }
+    }
+
+    IEnumerator changeBimetal1()
+    {
+        float[] angles = { 0f, 1f, 2f, 3f, 4f, 5f };
+        float a = 0f;
+
+        for(int i=0; i<100; i++)
+        {
+            for(int j=0; j<contactParts.Length; j++)
+            {
+                contactParts[j].transform.rotation = Quaternion.Euler(angles[j] * a, 0, 0);
+            }
+            a += 0.01f;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    IEnumerator changeBimetal2()
+    {
+        float[] angles = { 0f, 1f, 2f, 3f, 4f, 5f };
+        float a = 1f;
+
+        for (int i = 0; i < 100; i++)
+        {
+            for (int j = 0; j < contactParts.Length; j++)
+            {
+                contactParts[j].transform.rotation = Quaternion.Euler(angles[j] * a, 0, 0);
+            }
+            a -= 0.01f;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

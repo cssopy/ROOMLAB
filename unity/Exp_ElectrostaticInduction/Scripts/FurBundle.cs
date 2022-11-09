@@ -6,7 +6,7 @@ using System;
 public class FurBundle : MonoBehaviour
 {
     // 전자친화도
-    public float electronAffinity = 0;
+    public float electronAffinity = 0f;
     // 띠는 전하
     public string electricCharge = null;
     // 대전값
@@ -75,5 +75,17 @@ public class FurBundle : MonoBehaviour
                 electrificationDegree += 0.001f;
             }
         }
+        else if (collision.collider.gameObject.name == "Insulator")
+        {
+            initEboniteStick();
+        }
+    }
+
+    private void initEboniteStick()
+    {
+        electronAffinity = 0f;
+        electricCharge = null;
+        electrification = 0;
+        electrificationDegree = 0;
     }
 }
