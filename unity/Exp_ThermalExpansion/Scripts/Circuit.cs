@@ -10,6 +10,7 @@ public class Circuit : MonoBehaviour
     public bool isInContacted = false;
 
     public GameObject light;
+    public GameObject[] electricCharges;
 
     public GameObject[] contactParts;
 
@@ -20,6 +21,10 @@ public class Circuit : MonoBehaviour
     {
         if(isInstalledBattery && isInstalledLightBulb && isInstalledMetal && isInContacted)
         {
+            foreach(GameObject electricCharge in electricCharges)
+            {
+                electricCharge.SetActive(true);
+            }
             light.SetActive(true);
 
             if(temp < 1)
@@ -35,6 +40,10 @@ public class Circuit : MonoBehaviour
         }
         else
         {
+            foreach (GameObject electricCharge in electricCharges)
+            {
+                electricCharge.SetActive(false);
+            }
             light.SetActive(false);
 
             if (temp > 0)
