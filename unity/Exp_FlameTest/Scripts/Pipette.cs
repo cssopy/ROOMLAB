@@ -9,6 +9,8 @@ public class Pipette : GrabbableEvents
     public GameObject trickle;
     public string sampleName = null;
 
+    public CPC_FT cpc_ft;
+
     private Renderer glassLiquidRenderer;
     private bool isInteractingWithSample = false;
 
@@ -26,6 +28,11 @@ public class Pipette : GrabbableEvents
             float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
             if (colour < 0.581)
             {
+                if (!cpc_ft.isDone[2] && cpc_ft.isOrder(2))
+                {
+                    cpc_ft.SetPage(2);
+                }
+
                 colour += 0.01f;
                 glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
                 StartCoroutine(playTrickle());
