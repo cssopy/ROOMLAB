@@ -7,27 +7,44 @@ using UnityEngine.UI;
 
 public class ReportSettingScript : MonoBehaviour
 {
-    // 10개 박스의 값들
-    private string[] answers = new string[10];
+
+
     // 해당 위치에 있는 답 인덱스
-    private int[] numbers = new int[5] { -1, -1, -1, -1, -1 };
-    // 10개의 박스의 최초 위치
-    public Vector3[] positions = new Vector3[10];
-    // 5개의 빈칸의 최초 위치
-    private Vector3[] blanks = new Vector3[5];
-    // 현재 타겟팅된 박스
+    public int[] numbers = new int[5] { -1, -1, -1, -1, -1 };
+
+    // 현재 타겟팅된 선택지
     public int target = -1;
+
     // 날짜와 시간
     private Text date;
     private Text username;
+
+    // 현재 실험
+    private int expIdx;
+
+    System.Random random = new System.Random();
+
+    // 1. 선택지 10개의 값
+    private string[,] answers = new string[3, 10];
+//    {
+//        { "정전기 유도", "+", "-", "절연체", "털 뭉치", "실크", "대전", "집전체", "검전기 유도", "마찰력" }.OrderBy(x => random.Next()).ToArray(),
+//        { "가장자리", "0.2", "산소", "3.2", "정중앙", "수소", "1.0", "기체 반응의", "0.8", "일정 성분비" },
+//        { "염화 나트륨", "염화 칼슘", "흰색", "질산 구리", "검정색", "빨간색", "염화 마그네슘", "보라색", "1", "2"},
+//    };
+    // 0. 마찰 전기
+    // 1. 구리 연소 반응
+    // 2. 
+
     
-    // 기타 변수
-    private GameObject obj;
-    private GameObject obj2;
+    // 2. 활성화 시킬 빈칸들 -> 얘는 Awake에서 함수로 ㅇㅇ
 
 
     public void Awake()
     {
+        // 실험 번호
+        // expIdx = PlayerPrefs.GetInt("expIdx");
+        expIdx = 0;
+
         // 날짜와 이름 세팅
         date = GameObject.Find("Date").GetComponent<Text>();
         username = GameObject.Find("Username").GetComponent<Text>();
@@ -39,47 +56,76 @@ public class ReportSettingScript : MonoBehaviour
         // 빈 칸들의 좌표 받아와서 사용
         for (int i = 0; i < 5; i++)
         {
-            obj = GameObject.Find($"Blank_{i}");
-            blanks[i] = obj.transform.position;
+            transform.Find($"Blank_{expIdx}_{i}").gameObject.SetActive(true);
         }
+
+       
     }
 
     // 타겟팅 된 빈칸 저장
-    public void SetBlank(int t)
+
+    public string SetAnswers(int n, int m)
     {
-        target = t;
+        return answers[n,m];
     }
 
-    public void SetAnswers(int n, Vector3 position, string text)
+    public void SelectAnswer(int t)
     {
-        answers[n] = text;
-        positions[n] = position;
-    }
-
-    public void SelectAnswer(int n)
-    {
-        if (target != -1)
+        // 1. 똑같은 것을 연속으로 두 번 누른 상황인 경우 버튼 해제
+        if (target == t)
         {
-            // 타겟으로 위치를 바꿔야 함
-            // 1. 기존에 있던 값이 있으면, 그 값을 원래 위치로 옮기기
-            if (numbers[target] != -1)
-            {
-                int m = numbers[target];
-                obj2 = transform.Find($"Answer_{m}").gameObject;
-                obj2.transform.position = positions[m];
-            }
-
-            // 2. 빈 자리에 값을 넣기
-            numbers[target] = n;
-            obj = transform.Find($"Answer_{n}").gameObject;
-            obj.transform.position = blanks[target];
-            obj2 = transform.Find($"Blank_{target}").gameObject;
-            obj2.GetComponent<Outline>().effectColor = Color.black;
-            obj2.GetComponentInChildren<Text>().text = answers[n];
+            transform.Find($"Answer_{target}").GetComponent<Outline>().effectColor = Color.yellow;
             target = -1;
+        }
+
+        // 2. 전혀 다른 버튼인데 이전 값이 없으면 그냥 넣기
+        else if (target == -1)
+        {
+            target = t;
+        }
+
+        // 3. 이전 값이 존재함
+        else
+        {
+            transform.Find($"Answer_{target}").GetComponent<Outline>().effectColor = Color.white;
+            target = t;
+        }
+
+    }
+
+    public string SelectBlank(int m)
+    {
+        // 1. 빈 자리에 값 넣기
+        if (numbers[m] == -1)
+        {
+            // 숨기기 & 색 빼기
+            GameObject obj = transform.Find($"Answer_{target}").gameObject;
+            obj.SetActive(false);
+            obj.GetComponent<Outline>().effectColor = Color.white;
             
+            // 정답 채우기
+            numbers[m] = target;
+
+            // 초기화
+            target = -1;
+
+            // 값 넣기
+            return answers[expIdx, numbers[m]];
+        }
+
+        // 2, 차 있는 값 빼기
+        else
+        {
+            // 활성화
+            transform.Find($"Answer_{numbers[m]}").gameObject.SetActive(true);
+            
+            // 정답 초기화
+            numbers[m] = -1;
+
+            // 값 넣기
+
+            return "";
+
         }
     }
-
-
 }
