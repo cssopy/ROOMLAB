@@ -14,6 +14,8 @@ public class Cotton : MonoBehaviour
     private Grains grainsComp;
     private Fire fireComp;
 
+    float burnTime;
+
     private void Awake()
     {
         grainsComp = grains.GetComponent<Grains>();
@@ -25,37 +27,45 @@ public class Cotton : MonoBehaviour
         if (isBurning)
         {
             grainsComp.onFire();
-            fire.SetActive(true);
-        }
-        else
-        {
-            fire.SetActive(false);
+            fire.transform.LookAt(Vector3.up);
+
+            burnTime += Time.deltaTime;
+            if (burnTime >= 60)
+            {
+                fire.SetActive(false);
+                isBurning = false;
+            }
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Flame")
         {
-            isBurning = true;
-            if (type == "Na")
+            if (!isBurned)
             {
-                fireComp.setFireColor(Color.yellow);
-            }else if (type == "Cu")
-            {
-                fireComp.setFireColor(new Color(0, 255, 255));
-            }
-            else if (type == "Sr")
-            {
-                fireComp.setFireColor(Color.red);
-            }
-            else if (type == "Ba")
-            {
-                fireComp.setFireColor(new Color(60, 66, 23));
-            }
-            else if (type == "K")
-            {
-                fireComp.setFireColor(new Color(139, 0, 255));
+                isBurned = true;
+                isBurning = true;
+                fire.SetActive(true);
+                if (type == "Na")
+                {
+                    fireComp.setFireColor(Color.yellow);
+                }else if (type == "Cu")
+                {
+                    fireComp.setFireColor(new Color(8f / 255f, 64f / 255f, 57f / 255f));
+                }
+                else if (type == "Sr")
+                {
+                    fireComp.setFireColor(Color.red);
+                }
+                else if (type == "Ba")
+                {
+                    fireComp.setFireColor(new Color(60f / 255f, 66f / 255f, 23f / 255f));
+                }
+                else if (type == "K")
+                {
+                    fireComp.setFireColor(new Color(1f, 51f / 255f, 1f));
+                }
             }
         }
     }

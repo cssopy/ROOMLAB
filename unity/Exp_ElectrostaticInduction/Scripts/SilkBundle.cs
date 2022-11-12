@@ -75,5 +75,17 @@ public class SilkBundle : MonoBehaviour
                 electrificationDegree += 0.001f;
             }
         }
+        else if (collision.collider.gameObject.name == "Insulator")
+        {
+            initEboniteStick();
+        }
+    }
+
+    private void initEboniteStick()
+    {
+        electronAffinity = 30f;
+        electricCharge = null;
+        electrification = 0;
+        electrificationDegree = 0;
     }
 }

@@ -10,18 +10,7 @@ public class PipetteGlass : MonoBehaviour
     {
         if (other.tag == "Sample")
         {
-            parent.OnTriggerEnterInGlass();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Sample")
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                parent.OnTriggerStayInGlass(other);
-            }
+            parent.OnTriggerEnterInGlass(other);
         }
     }
 
