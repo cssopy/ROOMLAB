@@ -25,16 +25,16 @@ public class Pipette : GrabbableEvents
     {
         if (!isInteractingWithSample)
         {
-            float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
-            if (colour < 0.581)
+            float colour = glassLiquidRenderer.material.GetFloat("_Fill");
+            if (colour > -1)
             {
                 if (!cpc_ft.isDone[2] && cpc_ft.isOrder(2))
                 {
                     cpc_ft.SetPage(2);
                 }
 
-                colour += 0.01f;
-                glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
+                colour += -0.005f;
+                glassLiquidRenderer.material.SetFloat("_Fill", colour);
                 StartCoroutine(playTrickle());
             }
             else
@@ -46,22 +46,25 @@ public class Pipette : GrabbableEvents
             sampleName = other.name;
             if (other.name == "Cu")
             {
-                glassLiquidRenderer.material.SetColor("_Colour", new Color(118f / 255f, 183f / 255f, 163f / 255f, 255f / 255f));
+                glassLiquidRenderer.material.SetColor("_LiquidColor", new Color(113f / 255f, 192f / 255f, 212f / 255f));
+                glassLiquidRenderer.material.SetColor("_SurfaceColor", new Color(113f / 255f, 192f / 255f, 212f / 255f));
             }
             else if (other.name == "Ba")
             {
-                glassLiquidRenderer.material.SetColor("_Colour", new Color(105f / 255f, 104f / 255f, 125f / 255f, 60f / 255f));
+                glassLiquidRenderer.material.SetColor("_LiquidColor", new Color(1f, 1f, 1f));
+                glassLiquidRenderer.material.SetColor("_SurfaceColor", new Color(1f, 1f, 1f));
             }
             else
             {
-                glassLiquidRenderer.material.SetColor("_Colour", Color.gray);
+                glassLiquidRenderer.material.SetColor("_LiquidColor", new Color(193f/255f, 198f/255f, 200f/ 255f));
+                glassLiquidRenderer.material.SetColor("_SurfaceColor", new Color(193f / 255f, 198f / 255f, 200f / 255f));
             }
 
-            float colour = glassLiquidRenderer.material.GetFloat("_FillAmount");
-            if (colour > 0.4)
+            float colour = glassLiquidRenderer.material.GetFloat("_Fill");
+            if (colour < 0.55)
             {
-                colour += -0.01f; 
-                glassLiquidRenderer.material.SetFloat("_FillAmount", colour);
+                colour += 0.005f;
+                glassLiquidRenderer.material.SetFloat("_Fill", colour);
             }
         }
     }
