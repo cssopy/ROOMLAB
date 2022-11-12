@@ -8,10 +8,8 @@ public class Trickle : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("뭔가 인식" + other.name + other.tag);
         if(other.tag == "Cotton")
         {
-            Debug.Log("인식");
             parent.OnParticleCollisionAtTrickle(other);
         }
     }

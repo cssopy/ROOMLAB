@@ -6,32 +6,23 @@ using BNG;
 public class LighterEvent : GrabbableEvents
 {
     private GameObject childObject;
-    public bool isActive = false;
+
+    public GameObject button;
 
     void Start()
     {
         childObject = transform.Find("Flame").gameObject;
     }
 
-    private void Update()
-    {
-        if (isActive)
-        {
-            childObject.SetActive(isActive);
-        }
-        else
-        {
-            childObject.SetActive(isActive);
-        }
-    }
-
     public override void OnTriggerDown()
     {
-        isActive = !isActive;
+        childObject.SetActive(true);
+        button.transform.Translate(new Vector3(0, 0, 0.005f));
     }
 
-    public void OnActivated()
+    public override void OnTriggerUp()
     {
-        isActive = !isActive;
+        childObject.SetActive(false);
+        button.transform.Translate(new Vector3(0, 0, -0.005f));
     }
 }
