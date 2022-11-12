@@ -7,7 +7,7 @@ public class ChainBall : MonoBehaviour
     public GameObject Fire;
     public SphereCollider sc;
 
-    float expansionDegree = 0.69f;
+    public float expansionDegree = 0.69f;
     Renderer renderer;
 
     private void Awake()
@@ -44,5 +44,11 @@ public class ChainBall : MonoBehaviour
                 renderer.material.color = new Color(expansionDegree, 0.55f, 0.438f);
             }
         }
+    }
+
+    public void init()
+    {
+        expansionDegree = 0.69f;
+        renderer.material.color = new Color(expansionDegree, 0.55f, 0.438f);
     }
 }

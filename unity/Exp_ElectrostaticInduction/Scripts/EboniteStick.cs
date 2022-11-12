@@ -30,6 +30,8 @@ public class EboniteStick : MonoBehaviour
     public GameObject timerOfTU;
     float timeOfTU;
 
+    public GameObject test;
+
     private void Update()
     {
         if(electricCharge == "plus")
