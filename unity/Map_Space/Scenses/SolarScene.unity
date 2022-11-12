@@ -408,7 +408,8 @@ GameObject:
   - component: {fileID: 19770726}
   - component: {fileID: 19770725}
   - component: {fileID: 19770724}
-  - component: {fileID: 19770727}
+  - component: {fileID: 19770729}
+  - component: {fileID: 19770728}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -424,8 +425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19770722}
   m_LocalRotation: {x: 0, y: 0, z: 0.20312053, w: 0.97915375}
-  m_LocalPosition: {x: 0, y: 0, z: -927.1855}
-  m_LocalScale: {x: 31.855, y: 31.855, z: 31.855}
+  m_LocalPosition: {x: 0, y: 0, z: -1524.745}
+  m_LocalScale: {x: 33.333332, y: 33.333332, z: 33.333332}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1255895988451166407}
@@ -496,7 +497,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19770722}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &19770727
+--- !u!114 &19770728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,12 +506,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 19770722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8214ff39ab29ba642866ba7f60d1f0b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 10
+--- !u!114 &19770729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19770722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.027397
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -927.1855}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -1524.745}
 --- !u!1 &33656237
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +674,8 @@ GameObject:
   - component: {fileID: 34547075}
   - component: {fileID: 34547074}
   - component: {fileID: 34547073}
-  - component: {fileID: 34547076}
+  - component: {fileID: 34547078}
+  - component: {fileID: 34547077}
   m_Layer: 0
   m_Name: Venus
   m_TagString: Untagged
@@ -675,8 +691,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34547071}
   m_LocalRotation: {x: 0, y: 0, z: 0.9997224, w: 0.023559831}
-  m_LocalPosition: {x: 0, y: 0, z: -715.513}
-  m_LocalScale: {x: 30.259003, y: 30.259003, z: 30.259003}
+  m_LocalPosition: {x: 0, y: 0, z: -1039.2305}
+  m_LocalScale: {x: 32.489315, y: 32.489315, z: 32.489315}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2006495983}
@@ -746,7 +762,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34547071}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &34547076
+--- !u!114 &34547077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,12 +771,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 34547071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a53343a0f78d89418c2b66f5701cc7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.041152
+--- !u!114 &34547078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34547071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.44248
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -715.513}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -1039.23}
 --- !u!1 &43293160
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +942,8 @@ GameObject:
   - component: {fileID: 49801023}
   - component: {fileID: 49801022}
   - component: {fileID: 49801021}
-  - component: {fileID: 49801024}
+  - component: {fileID: 49801026}
+  - component: {fileID: 49801025}
   m_Layer: 0
   m_Name: Saturn
   m_TagString: Untagged
@@ -928,8 +959,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49801019}
   m_LocalRotation: {x: 0, y: 0, z: 0.23115358, w: 0.9729173}
-  m_LocalPosition: {x: 0, y: 0, z: -6838.56}
-  m_LocalScale: {x: 291.16, y: 291.16, z: 291.16}
+  m_LocalPosition: {x: 0, y: 0, z: -3646.9165}
+  m_LocalScale: {x: 100.77477, y: 100.77477, z: 100.77477}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5055706340338275514}
@@ -1001,7 +1032,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49801019}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &49801024
+--- !u!114 &49801025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1010,12 +1041,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 49801019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1257ab7e6f3204ba63c03c90dd26e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 22.74899
+--- !u!114 &49801026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49801019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.000329
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -6838.56}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -3646.917}
 --- !u!1 &52533626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,7 +1860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189580aaa1793ae4aba9c77650cd2101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 17f0891d301092d4998ece799f44cc05, type: 3}
+  greeting: {fileID: 8300000, guid: 17f0891d301092d4998ece799f44cc05, type: 3}
+  tutorial: {fileID: 8300000, guid: 6c4b91adb329248498fb6909691bed00, type: 3}
 --- !u!1 &89268570
 GameObject:
   m_ObjectHideFlags: 0
@@ -17337,7 +17383,8 @@ GameObject:
   - component: {fileID: 437061182}
   - component: {fileID: 437061181}
   - component: {fileID: 437061180}
-  - component: {fileID: 437061183}
+  - component: {fileID: 437061185}
+  - component: {fileID: 437061184}
   m_Layer: 0
   m_Name: Mars
   m_TagString: Untagged
@@ -17353,8 +17400,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437061178}
   m_LocalRotation: {x: 0, y: 0, z: 0.21805806, w: 0.9759358}
-  m_LocalPosition: {x: 0, y: 0, z: -1314.848}
-  m_LocalScale: {x: 16.95, y: 16.95, z: 16.95}
+  m_LocalPosition: {x: 0, y: 0, z: -2108.78}
+  m_LocalScale: {x: 24.312777, y: 24.312777, z: 24.312777}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 368140503}
@@ -17424,7 +17471,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437061178}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &437061183
+--- !u!114 &437061184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17433,12 +17480,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 437061178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d36cb08d7de224da3453eec2155abe, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 10.16229
+--- !u!114 &437061185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437061178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.014577
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -1314.848}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -2108.78}
 --- !u!1 &437406881
 GameObject:
   m_ObjectHideFlags: 0
@@ -35538,7 +35599,8 @@ GameObject:
   - component: {fileID: 1021201409}
   - component: {fileID: 1021201408}
   - component: {fileID: 1021201407}
-  - component: {fileID: 1021201410}
+  - component: {fileID: 1021201412}
+  - component: {fileID: 1021201411}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -35554,8 +35616,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021201405}
   m_LocalRotation: {x: 0, y: 0, z: 0.058322005, w: 0.9982978}
-  m_LocalPosition: {x: 0, y: 0, z: -943.6845}
-  m_LocalScale: {x: 8.6855, y: 8.6855, z: 8.6855}
+  m_LocalPosition: {x: 0, y: 0, z: -1624.745}
+  m_LocalScale: {x: 9.1, y: 9.1, z: 9.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1998057525}
@@ -35624,7 +35686,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021201405}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1021201410
+--- !u!114 &1021201411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35633,12 +35695,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1021201405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b15adf203de1c4b8f6980a5aa92ccd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.37037
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -49.497}
+--- !u!114 &1021201412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021201405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.37037
+  pivot: {fileID: 19770722}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -200}
 --- !u!1 &1028922646
 GameObject:
   m_ObjectHideFlags: 0
@@ -36448,7 +36524,8 @@ GameObject:
   - component: {fileID: 1089258289}
   - component: {fileID: 1089258288}
   - component: {fileID: 1089258287}
-  - component: {fileID: 1089258290}
+  - component: {fileID: 1089258292}
+  - component: {fileID: 1089258291}
   m_Layer: 0
   m_Name: Uranus
   m_TagString: Untagged
@@ -36464,8 +36541,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089258285}
   m_LocalRotation: {x: 0, y: 0, z: 0.75339127, w: 0.6575725}
-  m_LocalPosition: {x: 0, y: 0, z: -14530.34}
-  m_LocalScale: {x: 126.81, y: 126.81, z: 126.81}
+  m_LocalPosition: {x: 0, y: 0, z: -5357.2383}
+  m_LocalScale: {x: 66.499794, y: 66.499794, z: 66.499794}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1240520894}
@@ -36535,7 +36612,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089258285}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1089258290
+--- !u!114 &1089258291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36544,12 +36621,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1089258285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c764271f4da8a4cbb2ced50cc4d4a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 13.92641
+--- !u!114 &1089258292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089258285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.000326
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -14530.34}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -5357.238}
 --- !u!1 &1090441195
 GameObject:
   m_ObjectHideFlags: 0
@@ -42829,7 +42920,8 @@ GameObject:
   - component: {fileID: 1244213509}
   - component: {fileID: 1244213508}
   - component: {fileID: 1244213507}
-  - component: {fileID: 1244213510}
+  - component: {fileID: 1244213512}
+  - component: {fileID: 1244213511}
   m_Layer: 0
   m_Name: Jupiter
   m_TagString: Untagged
@@ -42845,8 +42937,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244213505}
   m_LocalRotation: {x: 0, y: 0, z: 0.027310992, w: 0.99962705}
-  m_LocalPosition: {x: 0, y: 0, z: -4084}
-  m_LocalScale: {x: 349.555, y: 349.555, z: 349.555}
+  m_LocalPosition: {x: 0, y: 0, z: -2789.2651}
+  m_LocalScale: {x: 110.40329, y: 110.40329, z: 110.40329}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 630432002}
@@ -42916,7 +43008,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244213505}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1244213510
+--- !u!114 &1244213511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42925,12 +43017,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1244213505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc1991a4ec4f5c4b82e344c0a907ffc, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 24.20194
+--- !u!114 &1244213512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244213505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.002308
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -4081.478}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -2789.265}
 --- !u!1 &1244508618
 GameObject:
   m_ObjectHideFlags: 0
@@ -50965,7 +51071,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB3CC\uC544\uAC00\uAE30"
+  m_text: "\uD0DC\uC591\uACC4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04a4314c591ad044683f3b9c5e6e287d, type: 2}
   m_sharedMaterial: {fileID: 8242617609547137954, guid: 04a4314c591ad044683f3b9c5e6e287d,
@@ -59724,8 +59830,8 @@ Transform:
   m_GameObject: {fileID: 1881531755}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 174, y: 174, z: 174}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1497576409}
   - {fileID: 1931172490}
@@ -60193,7 +60299,8 @@ GameObject:
   - component: {fileID: 1891749846}
   - component: {fileID: 1891749845}
   - component: {fileID: 1891749844}
-  - component: {fileID: 1891749847}
+  - component: {fileID: 1891749849}
+  - component: {fileID: 1891749848}
   m_Layer: 0
   m_Name: Mercury
   m_TagString: Untagged
@@ -60209,8 +60316,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891749842}
   m_LocalRotation: {x: 0, y: 0, z: 0.00030718942, w: 0.99999994}
-  m_LocalPosition: {x: 0, y: 0, z: -464.6099}
-  m_LocalScale: {x: 12.1985, y: 12.1985, z: 12.1985}
+  m_LocalPosition: {x: 0, y: 0, z: -761.57733}
+  m_LocalScale: {x: 20.628998, y: 20.628998, z: 20.628998}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 509604731}
@@ -60280,7 +60387,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891749842}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1891749847
+--- !u!114 &1891749848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60289,12 +60396,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891749842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687e5f5ba90c09545bd526afd2416d92, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.170515
+--- !u!114 &1891749849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891749842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.113636
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -464.6099}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -761.5773}
 --- !u!1 &1907978203
 GameObject:
   m_ObjectHideFlags: 0
@@ -81668,7 +81789,8 @@ GameObject:
   - component: {fileID: 2074442280}
   - component: {fileID: 2074442279}
   - component: {fileID: 2074442278}
-  - component: {fileID: 2074442281}
+  - component: {fileID: 2074442283}
+  - component: {fileID: 2074442282}
   m_Layer: 0
   m_Name: Neptunus
   m_TagString: Untagged
@@ -81684,8 +81806,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074442276}
   m_LocalRotation: {x: 0, y: 0, z: 0.24463049, w: 0.9696165}
-  m_LocalPosition: {x: 0, y: 0, z: -22680.15}
-  m_LocalScale: {x: 123.11, y: 123.11, z: 123.11}
+  m_LocalPosition: {x: 0, y: 0, z: -6708.204}
+  m_LocalScale: {x: 65.57439, y: 65.57439, z: 65.57439}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1462794377}
@@ -81755,7 +81877,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074442276}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2074442281
+--- !u!114 &2074442282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81764,12 +81886,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2074442276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bd7339aae098b4eb86feeec5d16fb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f73e78e6beac4fb08f637eedf8053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 14.90691
+--- !u!114 &2074442283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074442276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6eed3f92e881740a88bd0242ff38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.000166
-  axis: {x: 0, y: 1, z: 0}
-  diff: {x: 0, y: 0, z: -22680.15}
+  pivot: {fileID: 1881531755}
+  axis: {x: 0, y: -1, z: 0}
+  diff: {x: 0, y: 0, z: -6708.204}
 --- !u!1 &2076422716
 GameObject:
   m_ObjectHideFlags: 0
@@ -109051,7 +109187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8425785218220324337}
   m_LocalRotation: {x: 0.030843573, y: 0.7064338, z: 0.030843573, w: 0.7064338}
-  m_LocalPosition: {x: 0, y: 1.2, z: -2.5}
+  m_LocalPosition: {x: 0, y: 1.2, z: -2.8}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children:
