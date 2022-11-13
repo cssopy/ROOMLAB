@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -9,24 +7,19 @@ using System;
 public class AnswerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    private ReportSettingScript reportSettingScript;
     private Outline outline;
-    private Text text;
-    private int expIdx;
     public GameObject other;
+    private ReportSettingScript reportSettingScript;
 
-    public void Awake()
+    private void Awake()
     {
         reportSettingScript = other.GetComponent<ReportSettingScript>();
-        text = transform.GetChild(0).GetComponent<Text>();
-        // expIdx = PlayerPrefs.GetInt("expIdx");
-        expIdx = 0;
-        text.text = reportSettingScript.SetAnswers(expIdx ,Int32.Parse(name.Split("_")[1]));
     }
+
 
     public void WhileHover()
     {
-        if (reportSettingScript.target != Int32.Parse(name.Split("_")[1]))
+        if (reportSettingScript.target != Int32.Parse(name.Split("_")[1]) && reportSettingScript.counts <5)
         {
             outline = GetComponent<Outline>();
             outline.effectColor = Color.yellow;
@@ -44,8 +37,11 @@ public class AnswerScript : MonoBehaviour
 
     public void WhenSelected()
     {
-        outline = GetComponent<Outline>();
-        outline.effectColor = Color.blue;
-        reportSettingScript.SelectAnswer(Int32.Parse(name.Split("_")[1]));
+        if (reportSettingScript.counts < 5)
+        {
+            outline = GetComponent<Outline>();
+            outline.effectColor = Color.blue;
+            reportSettingScript.SelectAnswer(Int32.Parse(name.Split("_")[1]));
+        }
     }
 }
