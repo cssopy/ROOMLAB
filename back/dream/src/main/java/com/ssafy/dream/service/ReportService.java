@@ -122,7 +122,12 @@ public class ReportService {
             return new ResponseEntity<>("잘못된 접근입니다", HttpStatus.NOT_FOUND);
         } else {
             List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
-            ResRepDto resRepDto = new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx()));
+            ResRepDto resRepDto;
+            if (!pictures.isEmpty()) {
+                resRepDto = new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx()));
+            } else{
+                resRepDto = new ResRepDto(report, null, new ResExpDto(report.getExpIdx()));
+            }
             Map<String, ResRepDto> userReports = new HashMap<>();
             userReports.put("report", resRepDto);
             return new ResponseEntity<>(resRepDto, HttpStatus.OK);
@@ -139,7 +144,13 @@ public class ReportService {
             List<ResRepDto> reportsList = new ArrayList<>();
             for (Reports report : reports) {
                 List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
-                reportsList.add(new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx())));
+                ResRepDto resRepDto;
+                if (!pictures.isEmpty()) {
+                    resRepDto = new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx()));
+                } else{
+                    resRepDto = new ResRepDto(report, null, new ResExpDto(report.getExpIdx()));
+                }
+                reportsList.add(resRepDto);
             }
             Map<String, List> userReports = new HashMap<>();
             userReports.put("reports", reportsList);
