@@ -51,11 +51,11 @@ public class ReportService {
             return new ResponseEntity<>("실험을 다시 선택해주세요", HttpStatus.NOT_FOUND);
         } else {
             int score = 0;
-            if (reqRepDto.getRepAnswers().get(0) == exp.getExpAnswer1()) { score += 20; }
-            if (reqRepDto.getRepAnswers().get(1) == exp.getExpAnswer2()) { score += 20; }
-            if (reqRepDto.getRepAnswers().get(2) == exp.getExpAnswer3()) { score += 20; }
-            if (reqRepDto.getRepAnswers().get(3) == exp.getExpAnswer4()) { score += 20; }
-            if (reqRepDto.getRepAnswers().get(4) == exp.getExpAnswer5()) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(0).equals(exp.getExpAnswer1())) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(1).equals(exp.getExpAnswer2())) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(2).equals(exp.getExpAnswer3())) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(3).equals(exp.getExpAnswer4())) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(4).equals(exp.getExpAnswer5())) { score += 20; }
 
             Reports report = Reports.builder()
                     .userIdx(user)
