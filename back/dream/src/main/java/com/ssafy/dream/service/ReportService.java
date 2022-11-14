@@ -49,14 +49,18 @@ public class ReportService {
             return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
         } else if (exp == null) {
             return new ResponseEntity<>("실험을 다시 선택해주세요", HttpStatus.NOT_FOUND);
-        } else if (reqRepDto.getRepContent().length() == 0) {
-            return new ResponseEntity<>("보고서 내용을 작성해주세요", HttpStatus.BAD_REQUEST);
         } else {
+            int score = 0;
+            if (reqRepDto.getRepAnswers().get(0) == exp.getExpAnswer1()) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(1) == exp.getExpAnswer2()) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(2) == exp.getExpAnswer3()) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(3) == exp.getExpAnswer4()) { score += 20; }
+            if (reqRepDto.getRepAnswers().get(4) == exp.getExpAnswer5()) { score += 20; }
+
             Reports report = Reports.builder()
                     .userIdx(user)
                     .expIdx(exp)
-                    .repContent(reqRepDto.getRepContent())
-                    .repScore(reqRepDto.getRepScore())
+                    .repScore(score)
                     .repAnswer1(reqRepDto.getRepAnswers().get(0))
                     .repAnswer2(reqRepDto.getRepAnswers().get(1))
                     .repAnswer3(reqRepDto.getRepAnswers().get(2))
@@ -107,6 +111,23 @@ public class ReportService {
     }
 
 
+    public ResponseEntity<?> findReport(Long userIdx, Long repIdx) {
+        Users user = userRepository.findByUserIdx(userIdx);
+        Reports report = reportRepository.findByRepIdx(repIdx);
+        if (user == null) {
+            return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
+        } else if (report == null) {
+            return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.NOT_FOUND);
+        } else {
+            List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
+            ResRepDto resRepDto = new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx()));
+            Map<String, ResRepDto> userReports = new HashMap<>();
+            userReports.put("report", resRepDto);
+            return new ResponseEntity<>(resRepDto, HttpStatus.OK);
+        }
+    }
+
+
     public ResponseEntity<?> findUserReport(Long userIdx) {
         Users user = userRepository.findByUserIdx(userIdx);
         if (user == null) {
@@ -118,7 +139,9 @@ public class ReportService {
                 List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
                 reportsList.add(new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx())));
             }
-            return new ResponseEntity<>(reportsList, HttpStatus.OK);
+            Map<String, List> userReports = new HashMap<>();
+            userReports.put("reports", reportsList);
+            return new ResponseEntity<>(userReports, HttpStatus.OK);
         }
     }
 
