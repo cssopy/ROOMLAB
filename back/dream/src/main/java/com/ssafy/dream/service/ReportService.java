@@ -118,6 +118,8 @@ public class ReportService {
             return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
         } else if (report == null) {
             return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.NOT_FOUND);
+        } else if (report.getUserIdx() != user) {
+            return new ResponseEntity<>("잘못된 접근입니다", HttpStatus.NOT_FOUND);
         } else {
             List<Pictures> pictures = pictureRepository.findAllByRepIdx(report);
             ResRepDto resRepDto = new ResRepDto(report, pictures.stream().map(ResPicDto::new).collect(Collectors.toList()), new ResExpDto(report.getExpIdx()));
