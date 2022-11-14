@@ -9,7 +9,5 @@ import java.util.List;
 public class ReqRepDto {
     private Long userIdx;
     private Long expIdx;
-    private String repContent;
-    private int repScore;
     private List<String> repAnswers;
 }
