@@ -27,10 +27,6 @@ public class Experimentations {
     @NotNull
     private String expTitle;
 
-    @Column(name = "exp_detail", columnDefinition = "text")
-    @NotNull
-    private String expDetail;
-
     @Column(name = "exp_grade")
     private int expGrade;
 
