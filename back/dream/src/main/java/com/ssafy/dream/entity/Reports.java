@@ -31,10 +31,6 @@ public class Reports {
     @JoinColumn(name = "user_idx")
     private Users userIdx;
 
-    @Column(name = "rep_content", columnDefinition = "text")
-    @NotNull
-    private String repContent;
-
     @Column(name = "rep_score")
     @NotNull
     private int repScore;
@@ -63,6 +59,4 @@ public class Reports {
     @Column(name = "rep_date")
     @NotNull
     private Date repDate;
-
-
 }

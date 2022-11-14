@@ -29,6 +29,11 @@ public class ReportController {
     }
 
 
+    @GetMapping("/one/{userIdx}/{repIdx}")
+    public ResponseEntity<?> findReport(@PathVariable Long userIdx, @PathVariable Long repIdx){
+        return reportService.findReport(userIdx, repIdx);
+    }
+
     @GetMapping("/all/{userIdx}")
     public ResponseEntity<?> findUserReport(@PathVariable Long userIdx) {
         return reportService.findUserReport(userIdx);

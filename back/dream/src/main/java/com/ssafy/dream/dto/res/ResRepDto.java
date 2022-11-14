@@ -16,18 +16,15 @@ public class ResRepDto {
     private Long repIdx;
     private Long expIdx;
     private String expTitle;
-    private String repContent;
     private int repScore;
     private List<String> repAnswers;
     private Date repDate;
     private List<ResPicDto> pictures;
-//    private ResExpDto experience;
 
     public ResRepDto(Reports report, List<ResPicDto> pictures, ResExpDto experience) {
         this.repIdx = report.getRepIdx();
-        this.expIdx = report.getExpIdx().getExpIdx();
-        this.expTitle = report.getExpIdx().getExpTitle();
-        this.repContent = report.getRepContent();
+        this.expIdx = experience.getExpIdx();
+        this.expTitle = experience.getExpTitle();
         this.repScore = report.getRepScore();
         this.repDate = report.getRepDate();
         this.repAnswers = new ArrayList<String>(
@@ -37,6 +34,5 @@ public class ResRepDto {
                         report.getRepAnswer4(),
                         report.getRepAnswer5()));
         this.pictures = pictures;
-//        this.experience = experience;
     }
 }
