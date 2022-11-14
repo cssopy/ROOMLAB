@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 
 @Getter
@@ -25,7 +26,7 @@ public class ResRepDto {
     private String repDate;
     private List<ResPicDto> pictures;
     private String getDateTime(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 ddd요일");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일", Locale.KOREA);
         return dateFormat.format(date);
     }
 
