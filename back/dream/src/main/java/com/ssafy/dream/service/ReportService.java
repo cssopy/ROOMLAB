@@ -152,6 +152,7 @@ public class ReportService {
                 }
                 reportsList.add(resRepDto);
             }
+            Collections.reverse(reportsList);
             Map<String, List> userReports = new HashMap<>();
             userReports.put("reports", reportsList);
             return new ResponseEntity<>(userReports, HttpStatus.OK);
