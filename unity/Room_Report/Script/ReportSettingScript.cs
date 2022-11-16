@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Globalization;
@@ -16,40 +15,46 @@ public class ReportSettingScript : MonoBehaviour
     // 현재 타겟팅된 선택지
     public int target = -1;
 
-    // 날짜와 시간
+    // 날짜와 이름
     private Text date;
     private Text username;
 
+    // 현재 유서
+    public int userIdx;
+
     // 현재 실험
-    private int expIdx;
+    public int expIdx;
 
     // 외부 클릭 시 해제
     public GameObject shield;
 
     // 선택지 10개의 값
-    // 0. 마찰 전기
-    // 1. 열 팽창과 바이메탈
-    // 2. 불꽃 반응
-    // 3. 종이 크로마토 그래피
-    // 4. 앙금 생성 반응
-    // 5. 자기장 관찰
-    // 6. 화학 반응에서의 질량 보존 법칙
-    // 7. 구리의 연소 반응
-    // 8. 체세포 분열 관찰
-    // 9. 거름 실험 (미완)
-    // 10. 용수철 실험 (미완)
+    // 1. 마찰 전기
+    // 2. 열 팽창과 바이메탈
+    // 3. 불꽃 반응
+    // 4. 종이 크로마토 그래피
+    // 5. 앙금 생성 반응
+    // 6. 자기장 관찰
+    // 7. 화학 반응에서의 질량 보존 법칙
+    // 8. 구리의 연소 반응
+    // 9. 체세포 분열 관찰
+    // 10. 거름 실험 (미완)
+    // 11. 용수철 실험 (미완)
 
-    private string[,] total_answers = new string[9, 10]
+    private string[,] total_answers = new string[11, 10]
     {
+        { "", "", "", "", "", "", "", "", "", "" },
         { "-", "정전기 유도", "절연체", "털 뭉치", "+", "실크", "집전체", "검전기 유도", "마찰력", "대전" },
-        { "팽창", "열 팽창률", "철", "구리", "수축", "바이메탈", "폭발", "열 전도율", "전하량", "열화" },
+        { "팽창", "열 팽창률", "철", "구리", "수축", "바이메탈", "증발", "열 전도율", "전하량", "열화" },
         { "염화 나트륨", "질산 구리", "보라색", "빨간색", "황록색", "파란색", "검정색", "흰색", "염화 칼슘", "염화 마그네슘"},
         { "용해도", "크로마토그래피", "성분 물질", "노랑", "보라", "용매도", "원심분리법", "온도", "원소", "분자"},
-        { "염화 은", "흰색", "아이오딘 화", "납", " 아이오딘화 납", "질산 나트륨", "청록색", "염화", "구리", "염화 구리"},
+        { "염화 은", "아이오딘 화", "납", "아이오딘화 납", "앙금","질산 나트륨", "청록색", "염화", "구리", "염화 구리"},
         { "북", "남", "N", "S", "동일한", "동", "서", "E", "W", "반대되는"},
         { "흰색", "없다", "보존", "탄산 칼슘", "질량 보존", "노란색", "있다", "감소", "탄산 칼륨", "일정 성분비"},
         { "산소", "가장자리", "1.0", "0.2", "일정 성분비", "수소", "정중앙", "0.8", "3.2", "기체 반응"},
         { "세포 주기", "세포 핵", "염색체", "간기", "개수", "생장기", "중기", "후기", "딸세포", "부피"},
+        { "긴", "넘치지 않도록", "염화 나트륨", "나프탈렌", "거름", "짧은", "넘치도록", "염소", "나트륨", "크로마토그래피" },
+
     };
 
     // 지금 실험의 선택지
@@ -63,19 +68,32 @@ public class ReportSettingScript : MonoBehaviour
     public GameObject selection;
 
 
+    // 사진 저장용
+    public GameObject pictures;
+    public PictureScript pictureScript;
+
+    // 리포트 저장 컨트롤러
+    public GameObject other;
+    public ReportController reportController;
+
+
     public void Awake()
     {
         // 실험 번호
-        // expIdx = PlayerPrefs.GetInt("expIdx");
-        expIdx = 1;
+        expIdx = PlayerPrefs.GetInt("expIdx");
+        // expIdx = 3;
+
+        // 현재 유저
+        userIdx = PlayerPrefs.GetInt("userIdx");
+        // userIdx = 1;
 
         // 날짜와 이름 세팅
         date = GameObject.Find("Date").GetComponent<Text>();
         username = GameObject.Find("Username").GetComponent<Text>();
         CultureInfo cultures = CultureInfo.CreateSpecificCulture("ko-KR");
         date.text = DateTime.Now.ToString(string.Format($"yyyy년 MM월 dd일 ddd요일", cultures));
-        // username.text = PlayerPrefs.GetString("userId");
-        username.text = "홍성목";
+        username.text = PlayerPrefs.GetString("userId");
+        // username.text = "홍성목";
 
         // 보고서 사진 활성화
         transform.Find($"ReportImg_{expIdx}").gameObject.SetActive(true);
@@ -93,7 +111,6 @@ public class ReportSettingScript : MonoBehaviour
         {
             selection.transform.GetChild(j).transform.GetComponentInChildren<Text>().text = answers[j];
         }
-
     }
 
 
@@ -174,5 +191,41 @@ public class ReportSettingScript : MonoBehaviour
             return "";
 
         }
+    }
+
+    // 보고서 열고 닫기
+    public void ToggleReport()
+    {
+        // 아래는 구조에 따라 생략
+        other.SetActive(true);
+
+        transform.parent.gameObject.SetActive(false);
+    }
+
+    // 리포트 저장
+    public void SaveUserReport()
+    {
+        reportController = other.GetComponent<ReportController>();
+        List<string> repAnswers = new List<string> { };
+        for (int i = 0; i < 5; i++)
+        {
+            if (numbers[i] == -1)
+            {
+                repAnswers.Add("");
+            }
+            else
+            {
+                repAnswers.Add(answers[numbers[i]]);
+            }
+        }
+        Report report = new Report()
+        {
+            userIdx = userIdx,
+            expIdx = expIdx,
+            repAnswers = repAnswers,
+        };
+
+        pictureScript = pictures.GetComponent<PictureScript>();
+        reportController.SaveReport(report, pictureScript.selected);
     }
 }

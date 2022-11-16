@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using UnityEngine.Android;
 
 public class PictureScript : MonoBehaviour
 {
@@ -26,14 +26,25 @@ public class PictureScript : MonoBehaviour
     public GameObject preview;
 
     // 선택된 사진들
-    private List<string> selected = new List<string>();
+    public List<string> selected = new List<string>();
+
+    // 버튼들
+    public GameObject upButton;
+    public GameObject downButton;
+
+    GameObject dialog = null;
 
     void Awake()
     {
         // 현재 시간 불러오기 및 필터링 준비
         date = DateTime.Now;
         startedDateTime = $"com.oculus.shellenv-{date.ToString($"yyyyMMdd-HHmmss")}.jpg";
-        ResetPictures();
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead)) 
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);
+            dialog = new GameObject();
+        }
+        else { ResetPictures(); }
     }
 
     private void OnEnable()
@@ -41,13 +52,40 @@ public class PictureScript : MonoBehaviour
         ResetPictures();
     }
 
+    private void OnGUI()
+    {
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+
+            dialog.AddComponent<PermissionsRationaleDialog>();
+            return;
+        }
+        else if (dialog != null)
+        {
+            Destroy(dialog);
+        }
+    }
+
+
     private void ResetPictures()
     {
+        // 재로딩을 위한 리셋 처리
+        for (int a = 0; a < 8; a++)
+        {
+            GameObject picture = transform.Find($"Picture_{a}").gameObject;
+            picture.GetComponent<Outline>().effectColor = Color.black;
+            picture.transform.Find($"Check_mark_{a}").gameObject.SetActive(false);
+            picture.SetActive(false);
+        }
+
+
+
         // 사진이 저장된 경로
-        string path = "C:/Users/multicampus/Desktop/Screenshots";
-        // string path = "This-Headset/Oculus/Screenshots";
+        // string path = "C:/Users/multicampus/Desktop/Screenshots";
+        string path = "/storage/emulated/11/Oculus/Screenshots";
         // string path = "내 PC/Quest 2/내부 공유 저장용량/Oculus/Screenshots";
         // string path = "/sdcard/my_folder/my_file";
+
 
 
         // 사진 불러오는 로직
@@ -59,19 +97,20 @@ public class PictureScript : MonoBehaviour
         imgPaths = new List<string>{ };
 
         // 사진을 순서대로 필터링
+        // **********나중에는 대소관계를 바꿔야 한다**********
         for (int i = 0; i < images.Length; i++)
         {
-            if (string.Compare(Path.GetFileName(images[i]), startedDateTime) < 0)
+            if (string.Compare(Path.GetFileName(images[i]), startedDateTime) >= 0)
             {
                 imgPaths.Add(images[i]);
             }
         }
 
         // 사진 띄우기
-        for (int j = pageIdx; j < imgPaths.Count; j++)
+        for (int j = 0; j < imgPaths.Count - pageIdx * 8; j++)
         {
             // 사진은 한 번에 8개만
-            if (j-pageIdx == 8)
+            if (j == 8)
             {
                 break;
             }
@@ -79,13 +118,24 @@ public class PictureScript : MonoBehaviour
             else
             {
                 picture = transform.Find($"Picture_{j}").gameObject;
-                byte[] bytes = File.ReadAllBytes(imgPaths[j]);
+                byte[] bytes = File.ReadAllBytes(imgPaths[pageIdx * 8 + j]);
                 Texture2D texture = new Texture2D(2, 2);
                 texture.LoadImage(bytes);
                 picture.GetComponent<RawImage>().texture = texture;
                 picture.SetActive (true);
+
+                // 선택된 사진이면 배경 변경
+                if (selected.Contains(imgPaths[pageIdx * 8 + j]))
+                {
+                    picture.GetComponent<Outline>().effectColor = Color.magenta;
+                    picture.transform.Find($"Check_mark_{j}").gameObject.SetActive(true);
+                }
             }
         }
+
+        // 페이지에 따라 인덱스 버튼 수정
+        upButton.SetActive(pageIdx != 0);
+        downButton.SetActive((pageIdx + 1) * 8 < imgPaths.Count);
 
     }
     
@@ -113,6 +163,11 @@ public class PictureScript : MonoBehaviour
         if(selected.Contains(imgPaths[pageIdx * 8 + m]))
         {
             selected.Remove(imgPaths[pageIdx * 8 + m]);
+            transform.Find("Selected_count").GetComponent<Text>().text = $"{selected.Count}";
+            if (selected.Count == 4)
+            {
+                transform.Find("Selected_count").GetComponent<Text>().color = Color.white;
+            }
             return false;
         }
 
@@ -120,12 +175,24 @@ public class PictureScript : MonoBehaviour
         else
         {
             selected.Add(imgPaths[pageIdx * 8 + m]);
+            transform.Find("Selected_count").GetComponent<Text>().text = $"{selected.Count}";
+            if (selected.Count == 5)
+            {
+                Color color;
+                ColorUtility.TryParseHtmlString("#AD34FFFF", out color);
+                transform.Find("Selected_count").GetComponent<Text>().color = color;
+            }
             return true;
         }
+
     }
 
 
     // 3. 페이지 넘기는 기능 구현 (위, 아래로 바꾸고, 맨 위와 맨 아래에서는 그 방향으로 못 가게 해야함) + 마지막 페이지에서 사진이 빌 경우 off 시켜야함
-    // 4. 보고서 작성 도중 끄는 기능 필요(닫기)
+    public void Pagination(int k)
+    {
+        pageIdx += k;
+        ResetPictures();
+    }
 
 }

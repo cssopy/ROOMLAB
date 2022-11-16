@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
 
 public class OnePictureScript : MonoBehaviour
 {
-    private ReportSettingScript reportSettingScript;
     private PictureScript pictureScript;
     private Outline outline;
 
@@ -41,15 +38,18 @@ public class OnePictureScript : MonoBehaviour
     public void WhenClicked()
     {
         outline = GetComponent<Outline>();
-        if (pictureScript.SelectPicture(Int32.Parse(name.Split("_")[1])))
+        if (pictureScript.selected.Count < 5 || outline.effectColor == Color.magenta)
         {
-            outline.effectColor = Color.magenta;
-            transform.Find($"Check_mark_{Int32.Parse(name.Split("_")[1])}").gameObject.SetActive(true);
-        }
-        else
-        {
-            outline.effectColor = Color.yellow;
-            transform.Find($"Check_mark_{Int32.Parse(name.Split("_")[1])}").gameObject.SetActive(false);
+            if (pictureScript.SelectPicture(Int32.Parse(name.Split("_")[1])))
+            {
+                outline.effectColor = Color.magenta;
+                transform.Find($"Check_mark_{Int32.Parse(name.Split("_")[1])}").gameObject.SetActive(true);
+            }
+            else
+            {
+                outline.effectColor = Color.yellow;
+                transform.Find($"Check_mark_{Int32.Parse(name.Split("_")[1])}").gameObject.SetActive(false);
+            }
         }
     }
 }
