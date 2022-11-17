@@ -28,10 +28,24 @@ public class ReportController {
         return reportService.savePicture(userIdx, repIdx, images);
     }
 
+    @PostMapping("/picture/{userIdx}/{repIdx}/url")
+    public ResponseEntity<?> savePictureUrl(@PathVariable("userIdx") Long userIdx, @PathVariable("repIdx") Long repIdx, @RequestBody List<Long> pictures) {
+        return reportService.savePictureUrl(userIdx, repIdx, pictures);
+    }
+    @PostMapping("/picture/admin/create/{expIdx}")
+    public void saveAdminPicture(@PathVariable Long expIdx, @RequestParam List<MultipartFile> images) {
+        reportService.saveAdminPicture(expIdx, images);
+    }
+
 
     @GetMapping("/one/{userIdx}/{repIdx}")
     public ResponseEntity<?> findReport(@PathVariable Long userIdx, @PathVariable Long repIdx){
         return reportService.findReport(userIdx, repIdx);
+    }
+
+    @GetMapping("/exp/pictures/{expIdx}")
+    public ResponseEntity<?> findPictures(@PathVariable Long expIdx){
+        return reportService.findPictures(expIdx);
     }
 
     @GetMapping("/all/{userIdx}")
