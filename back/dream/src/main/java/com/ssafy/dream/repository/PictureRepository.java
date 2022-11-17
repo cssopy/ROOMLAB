@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface PictureRepository extends JpaRepository<Pictures, Long> {
     List<Pictures> findAllByRepIdx(Reports report);
+
+    Pictures findByPicIdx(Long picIdx);
 }
