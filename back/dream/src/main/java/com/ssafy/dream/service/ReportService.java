@@ -76,6 +76,19 @@ public class ReportService {
 
     }
 
+    public ResponseEntity<?> findPictures(Long expIdx) {
+        List<Pictures> pictures = pictureRepository.findAllByRepIdx(null);
+        List<ResPicDto> picturesList = new ArrayList<>();
+        for (Pictures picture : pictures) {
+            if (picture.getPicName().startsWith(expIdx.toString() + "_")) {
+                picturesList.add(new ResPicDto(picture));
+            }
+        }
+        Map<String, List<ResPicDto>> expPictures = new HashMap<>();
+        expPictures.put("pictures", picturesList);
+        return new ResponseEntity<>(expPictures, HttpStatus.OK);
+    }
+
     @Transactional
     public ResponseEntity<?> savePicture(Long userIdx, Long repIdx, List<MultipartFile> images) {
         Users user = userRepository.findByUserIdx(userIdx);
@@ -108,6 +121,32 @@ public class ReportService {
 
             return new ResponseEntity<>(true, HttpStatus.OK);
         }
+    }
+
+    public ResponseEntity<?> savePictureUrl(Long userIdx, Long repIdx, List<Long> pictures) {
+
+        for (Long picture : pictures)
+        {
+            Users user = userRepository.findByUserIdx(userIdx);
+            Reports report = reportRepository.findByRepIdx(repIdx);
+            if(user == null) {
+                return new ResponseEntity<>("존재하지 않는 유저입니다", HttpStatus.NOT_FOUND);
+            } else if (report == null) {
+                return new ResponseEntity<>("존재하지 않는 보고서입니다", HttpStatus.NOT_FOUND);
+            } else {
+                Pictures Pic = pictureRepository.findByPicIdx(picture);
+
+                Pictures pictureEntity = Pictures.builder()
+                        .repIdx(report)
+                        .picName(Pic.getPicName())
+                        .picSize(Pic.getPicSize())
+                        .picUrl(Pic.getPicUrl())
+                        .build();
+                pictureRepository.save(pictureEntity);
+
+            }
+        }
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 
@@ -159,4 +198,26 @@ public class ReportService {
         }
     }
 
+    public void saveAdminPicture(Long expIdx, List<MultipartFile> images) {
+        for (MultipartFile image : images) {
+            String picName = image.getOriginalFilename();
+            File picture = new File(localPath, picName);
+            try {
+                image.transferTo(picture);
+            } catch (IOException e) {
+
+            }
+
+            picture.setWritable(true);
+            picture.setReadable(true);
+
+            Pictures pictureEntity = Pictures.builder()
+                    .repIdx(null)
+                    .picName(picName)
+                    .picSize(image.getSize())
+                    .picUrl(uri+picName)
+                    .build();
+            pictureRepository.save(pictureEntity);
+        }
+    }
 }
