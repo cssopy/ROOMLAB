@@ -19,7 +19,7 @@ public class PictureScript : MonoBehaviour
     // 몇 번 페이지인지 기록하기
     private int pageIdx = 0;
 
-    // 사진을 입힐 객체
+    // 사진 입힐 객체
     private GameObject picture;
 
     // 프리뷰
@@ -58,7 +58,6 @@ public class PictureScript : MonoBehaviour
         {
 
             dialog.AddComponent<PermissionsRationaleDialog>();
-            return;
         }
         else if (dialog != null)
         {
