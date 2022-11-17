@@ -1,7 +1,5 @@
 using UnityEngine;
-# if PLATFORM_ANDROID
 using UnityEngine.Android;
-# endif
 
 public class PermissionsRationaleDialog : MonoBehaviour
 {
