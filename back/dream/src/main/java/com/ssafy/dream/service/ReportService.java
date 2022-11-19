@@ -57,6 +57,11 @@ public class ReportService {
             if (reqRepDto.getRepAnswers().get(3).equals(exp.getExpAnswer4())) { score += 20; }
             if (reqRepDto.getRepAnswers().get(4).equals(exp.getExpAnswer5())) { score += 20; }
 
+            Date reportedDate = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(reportedDate);
+            cal.add(Calendar.HOUR, 9);
+
             Reports report = Reports.builder()
                     .userIdx(user)
                     .expIdx(exp)
@@ -66,7 +71,7 @@ public class ReportService {
                     .repAnswer3(reqRepDto.getRepAnswers().get(2))
                     .repAnswer4(reqRepDto.getRepAnswers().get(3))
                     .repAnswer5(reqRepDto.getRepAnswers().get(4))
-                    .repDate(new Date())
+                    .repDate(reportedDate)
                     .build();
             reportRepository.save(report);
             Map<String, Long> data = new HashMap<>();
@@ -198,26 +203,26 @@ public class ReportService {
         }
     }
 
-    public void saveAdminPicture(Long expIdx, List<MultipartFile> images) {
-        for (MultipartFile image : images) {
-            String picName = image.getOriginalFilename();
-            File picture = new File(localPath, picName);
-            try {
-                image.transferTo(picture);
-            } catch (IOException e) {
-
-            }
-
-            picture.setWritable(true);
-            picture.setReadable(true);
-
-            Pictures pictureEntity = Pictures.builder()
-                    .repIdx(null)
-                    .picName(picName)
-                    .picSize(image.getSize())
-                    .picUrl(uri+picName)
-                    .build();
-            pictureRepository.save(pictureEntity);
-        }
-    }
+//    public void saveAdminPicture(Long expIdx, List<MultipartFile> images) {
+//        for (MultipartFile image : images) {
+//            String picName = image.getOriginalFilename();
+//            File picture = new File(localPath, picName);
+//            try {
+//                image.transferTo(picture);
+//            } catch (IOException e) {
+//
+//            }
+//
+//            picture.setWritable(true);
+//            picture.setReadable(true);
+//
+//            Pictures pictureEntity = Pictures.builder()
+//                    .repIdx(null)
+//                    .picName(picName)
+//                    .picSize(image.getSize())
+//                    .picUrl(uri+picName)
+//                    .build();
+//            pictureRepository.save(pictureEntity);
+//        }
+//    }
 }
