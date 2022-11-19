@@ -71,7 +71,7 @@ public class ReportService {
                     .repAnswer3(reqRepDto.getRepAnswers().get(2))
                     .repAnswer4(reqRepDto.getRepAnswers().get(3))
                     .repAnswer5(reqRepDto.getRepAnswers().get(4))
-                    .repDate(reportedDate)
+                    .repDate(cal.getTime())
                     .build();
             reportRepository.save(report);
             Map<String, Long> data = new HashMap<>();
