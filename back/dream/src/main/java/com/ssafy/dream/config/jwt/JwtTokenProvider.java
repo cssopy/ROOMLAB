@@ -28,9 +28,9 @@ public class JwtTokenProvider {
     @Value("spring.jwt.secret")
     private String secretKey;
 
-    private Long accessTokenExpireTime = 1000L * 60 * 30; // access 토큰 유효기간 30분
+    private Long accessTokenExpireTime = 1000L * 60 * 60 * 24; // access 토큰 유효기간 하루
 
-    private Long refreshTokenExpireTime = 1000L * 60 * 60 * 2; // refresh 토큰 유효기간 2시간
+    private Long refreshTokenExpireTime = 1000L * 60 * 60 * 24 * 15; // refresh 토큰 유효기간 15일
 
     private final CustomUserDetailsService userDetailsService;
 
