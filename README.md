@@ -21,14 +21,23 @@
 - AWS EC2, Jenkins, Nginx, Docker
 - MySQL
 
+## 📚 라이브러리
+
+- 백엔드
+    |이름|버전|적용|
+    |---|---|---|
+    |JJWT|0.9.1|JWT 생성 및 검증, 사용자 인증|
+    |Lombok|1.18.24|Repository Class 사용|
+    |Spring Boot|2.7.3|Spring 프로젝트|
+
 ## 👥 멤버
 
-- 권성호
-- 홍성목
-- 황희원
-- 강보경
-- 김주원
-- 이정재
+- [권성호](https://github.com/Seongho0503)
+- 홍성목(https://github.com/Mosquito0076)
+- 황희원(https://github.com/lea-hwang)
+- 강보경(https://github.com/pen2402)
+- 김주원(https://github.com/Juwon-Kiim)
+- 이정재(https://github.com/cssopy)
 
 
 ## **🔗 자세한 내용**
