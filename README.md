@@ -33,11 +33,11 @@
 ## 👥 멤버
 
 - [권성호](https://github.com/Seongho0503)
-- 홍성목(https://github.com/Mosquito0076)
-- 황희원(https://github.com/lea-hwang)
-- 강보경(https://github.com/pen2402)
-- 김주원(https://github.com/Juwon-Kiim)
-- 이정재(https://github.com/cssopy)
+- [홍성목](https://github.com/Mosquito0076)
+- [황희원](https://github.com/lea-hwang)
+- [강보경](https://github.com/pen2402)
+- [김주원](https://github.com/Juwon-Kiim)
+- [이정재](https://github.com/cssopy)
 
 
 ## **🔗 자세한 내용**
